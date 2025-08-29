@@ -1,14 +1,12 @@
 'use client';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { PropsWithChildren, useState } from 'react';
 
 /**
  * React Query Provider
  * - @tanstack/react-query를 사용한 클라이언트 캐시 설정
  * - QueryClient 인스턴스 생성 및 제공
- * - 개발 환경에서 React Query Devtools 제공
  */
 export default function ReactQueryProvider({ children }: PropsWithChildren) {
   const [queryClient] = useState(
@@ -38,9 +36,6 @@ export default function ReactQueryProvider({ children }: PropsWithChildren) {
   return (
     <QueryClientProvider client={queryClient}>
       {children}
-      {process.env.NODE_ENV === 'development' && (
-        <ReactQueryDevtools initialIsOpen={false} />
-      )}
     </QueryClientProvider>
   );
 }
