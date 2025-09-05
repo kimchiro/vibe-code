@@ -13,10 +13,32 @@
 .search {
   width: 1168px;
   height: 48px;
-  background-color: #f0f0f0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 16px;
+  background-color: var(--color-surface-primary);
+  border-radius: 8px;
+}
+
+.searchLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.searchRight {
+  display: flex;
+  align-items: center;
+}
+
+.filterSelect {
+  width: 120px;
+}
+
+.writeButton {
+  width: auto;
 }
 
 .gap2 {
@@ -26,11 +48,88 @@
 
 .main {
   width: 1168px;
-  height: 936px;
-  background-color: #f8f8f8;
+  min-height: 936px;
+
+}
+
+.diaryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.diaryCard {
+  background-color: var(--color-surface-primary);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.diaryCard:hover {
+  transform: translateY(-2px);
+}
+
+.cardImage {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cardContent {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.cardDate {
+  font-size: var(--typography-caption2-korean-desktop-font-size);
+  line-height: var(--typography-caption2-korean-desktop-line-height);
+  font-weight: var(--typography-caption2-korean-desktop-font-weight);
+  color: var(--color-text-tertiary);
+}
+
+.cardText {
+  font-size: var(--typography-body1-korean-desktop-font-size);
+  line-height: var(--typography-body1-korean-desktop-line-height);
+  font-weight: var(--typography-body1-korean-desktop-font-weight);
+  color: var(--color-text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.cardEmotion {
+  font-size: var(--typography-caption2-korean-desktop-font-size);
+  line-height: var(--typography-caption2-korean-desktop-line-height);
+  font-weight: var(--typography-caption2-korean-desktop-font-weight);
+  border-radius: 8px;
+  width: fit-content;
 }
 
 .gap3 {
@@ -41,7 +140,7 @@
 .pagination {
   width: 1168px;
   height: 32px;
-  background-color: #f0f0f0;
+  background-color: var(--color-surface-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,4 +149,31 @@
 .gap4 {
   width: 1168px;
   height: 40px;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: opacity 0.2s ease;
+}
+
+.deleteButton:hover {
+  opacity: 0.7;
+}
+
+.deleteButton img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
