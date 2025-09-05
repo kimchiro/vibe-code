@@ -1,0 +1,127 @@
+/* DiariesDetail 컴포넌트 와이어프레임 스타일 */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 1168px;
+  background-color: var(--color-surface-primary);
+  padding-top: 64px;
+}
+
+/* Detail Title 영역 - 1168 * 84 */
+.detailTitle {
+  display: flex;
+  width: 1168px;
+  height: 84px;
+  background-color: var(--color-surface-secondary);
+  border: 1px solid var(--color-border-primary);
+  margin-bottom: 24px;
+}
+
+.titleContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-family-korean-primary);
+  font-size: var(--typography-heading1-korean-desktop-font-size);
+  line-height: var(--typography-heading1-korean-desktop-line-height);
+  font-weight: var(--typography-heading1-korean-desktop-font-weight);
+  letter-spacing: var(--typography-heading1-korean-desktop-letter-spacing);
+  color: var(--color-text-primary);
+}
+
+/* Detail Content 영역 - 1168 * 169 */
+.detailContent {
+  display: flex;
+  width: 1168px;
+  height: 169px;
+  background-color: var(--color-surface-tertiary);
+  border: 1px solid var(--color-border-primary);
+  margin-bottom: 24px;
+}
+
+.contentText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-family-korean-primary);
+  font-size: var(--typography-body1-korean-desktop-font-size);
+  line-height: var(--typography-body1-korean-desktop-line-height);
+  font-weight: var(--typography-body1-korean-desktop-font-weight);
+  letter-spacing: var(--typography-body1-korean-desktop-letter-spacing);
+  color: var(--color-text-secondary);
+}
+
+/* Detail Footer 영역 - 1168 * 56 */
+.detailFooter {
+  display: flex;
+  width: 1168px;
+  height: 56px;
+  background-color: var(--color-surface-secondary);
+  border: 1px solid var(--color-border-primary);
+  margin-bottom: 24px;
+}
+
+.footerContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-family-korean-primary);
+  font-size: var(--typography-label1-korean-desktop-font-size);
+  line-height: var(--typography-label1-korean-desktop-line-height);
+  font-weight: var(--typography-label1-korean-desktop-font-weight);
+  letter-spacing: var(--typography-label1-korean-desktop-letter-spacing);
+  color: var(--color-text-tertiary);
+}
+
+/* Retrospect Input 영역 - 1168 * 85 */
+.retrospectInput {
+  display: flex;
+  width: 1168px;
+  height: 85px;
+  background-color: var(--color-surface-primary);
+  border: 1px solid var(--color-border-secondary);
+  margin-bottom: 16px;
+}
+
+.inputContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-family-korean-primary);
+  font-size: var(--typography-body2-korean-desktop-font-size);
+  line-height: var(--typography-body2-korean-desktop-line-height);
+  font-weight: var(--typography-body2-korean-desktop-font-weight);
+  letter-spacing: var(--typography-body2-korean-desktop-letter-spacing);
+  color: var(--color-text-primary);
+}
+
+/* Retrospect List 영역 - 1168 * 72 */
+.retrospectList {
+  display: flex;
+  width: 1168px;
+  height: 72px;
+  background-color: var(--color-surface-tertiary);
+  border: 1px solid var(--color-border-primary);
+}
+
+.listContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-family-korean-primary);
+  font-size: var(--typography-body2-korean-desktop-font-size);
+  line-height: var(--typography-body2-korean-desktop-line-height);
+  font-weight: var(--typography-body2-korean-desktop-font-weight);
+  letter-spacing: var(--typography-body2-korean-desktop-letter-spacing);
+  color: var(--color-text-secondary);
+}
