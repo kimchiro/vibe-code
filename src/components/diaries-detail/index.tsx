@@ -1,16 +1,24 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import styles from './styles.module.css';
 import { Button } from '@/commons/components/button';
-import { Emotion, getEmotionLabel, getEmotionImage } from '@/commons/constants/enum';
+import { Input } from '@/commons/components/input';
+import { Emotion, getEmotionLabel, getEmotionImage, getEmotionColor } from '@/commons/constants/enum';
 
 // Mock 데이터 인터페이스
 interface DiaryDetailData {
   id: string;
   title: string;
   emotion: Emotion;
+  content: string;
+  createdAt: string;
+}
+
+// 회고 데이터 인터페이스
+interface RetrospectData {
+  id: string;
   content: string;
   createdAt: string;
 }
@@ -40,10 +48,29 @@ const mockDiaryDetails: DiaryDetailData[] = [
   }
 ];
 
-// 현재 표시할 Mock 데이터 (첫 번째 항목 사용)
-const mockDiaryDetail = mockDiaryDetails[0];
+// 현재 표시할 Mock 데이터 (다양한 감정 테스트를 위해 변경 가능)
+const mockDiaryDetail = mockDiaryDetails[0]; // HAPPY: 빨간색
+// const mockDiaryDetail = mockDiaryDetails[1]; // SAD: 파란색  
+// const mockDiaryDetail = mockDiaryDetails[2]; // ANGRY: 회색
+
+// Mock 회고 데이터
+const mockRetrospects: RetrospectData[] = [
+  {
+    id: '1',
+    content: '오늘 하루를 돌아보니 정말 의미있는 시간이었습니다. 친구들과 함께한 시간이 가장 소중했어요.',
+    createdAt: '2024.01.15 14:30'
+  },
+  {
+    id: '2', 
+    content: '앞으로는 더 긍정적인 마음가짐으로 살아가려고 합니다.',
+    createdAt: '2024.01.15 15:45'
+  }
+];
 
 const DiariesDetail: React.FC = () => {
+  const [retrospectInput, setRetrospectInput] = useState('');
+  const [retrospects, setRetrospects] = useState<RetrospectData[]>(mockRetrospects);
+
   const handleCopyContent = () => {
     navigator.clipboard.writeText(mockDiaryDetail.content);
     // TODO: 복사 완료 알림 추가
@@ -57,6 +84,28 @@ const DiariesDetail: React.FC = () => {
   const handleDelete = () => {
     // TODO: 삭제 기능 구현
     console.log('삭제 버튼 클릭');
+  };
+
+  const handleRetrospectSubmit = () => {
+    if (retrospectInput.trim()) {
+      const newRetrospect: RetrospectData = {
+        id: Date.now().toString(),
+        content: retrospectInput.trim(),
+        createdAt: new Date().toLocaleString('ko-KR', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit'
+        }).replace(/\. /g, '.').replace(/\./g, '.').slice(0, -1)
+      };
+      setRetrospects([newRetrospect, ...retrospects]);
+      setRetrospectInput('');
+    }
+  };
+
+  const handleRetrospectInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRetrospectInput(e.target.value);
   };
 
   return (
@@ -73,7 +122,10 @@ const DiariesDetail: React.FC = () => {
                 height={24}
                 className={styles.emotionIcon}
               />
-              <span className={styles.emotionText}>
+              <span 
+                className={styles.emotionText}
+                style={{ color: getEmotionColor(mockDiaryDetail.emotion) }}
+              >
                 {getEmotionLabel(mockDiaryDetail.emotion)}
               </span>
             </div>
@@ -128,12 +180,44 @@ const DiariesDetail: React.FC = () => {
 
       {/* Retrospect Input 영역 */}
       <div className={styles.retrospectInput}>
-        <div className={styles.inputContent}>Retrospect Input</div>
+        <Input
+          variant="primary"
+          size="medium"
+          theme="light"
+          placeholder="회고를 남겨보세요."
+          value={retrospectInput}
+          onChange={handleRetrospectInputChange}
+          className={styles.retrospectInputField}
+        />
+        <Button
+          variant="primary"
+          size="medium"
+          theme="light"
+          onClick={handleRetrospectSubmit}
+          className={styles.retrospectInputButton}
+        >
+          등록
+        </Button>
       </div>
 
       {/* Retrospect List 영역 */}
       <div className={styles.retrospectList}>
-        <div className={styles.listContent}>Retrospect List</div>
+        {retrospects.length > 0 ? (
+          retrospects.map((retrospect) => (
+            <div key={retrospect.id} className={styles.retrospectItem}>
+              <div className={styles.retrospectContent}>
+                <p className={styles.retrospectText}>{retrospect.content}</p>
+                <p className={styles.retrospectDate}>{retrospect.createdAt}</p>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className={styles.retrospectItem}>
+            <div className={styles.retrospectContent}>
+              <p className={styles.retrospectText}>아직 회고가 없습니다.</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
