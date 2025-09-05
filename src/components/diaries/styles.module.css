@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 1168px;
+  margin: 0 auto;
+}
+
+.gap {
+  width: 1168px;
+  height: 32px;
+}
+
+.search {
+  width: 1168px;
+  height: 48px;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gap2 {
+  width: 1168px;
+  height: 42px;
+}
+
+.main {
+  width: 1168px;
+  height: 936px;
+  background-color: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gap3 {
+  width: 1168px;
+  height: 40px;
+}
+
+.pagination {
+  width: 1168px;
+  height: 32px;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gap4 {
+  width: 1168px;
+  height: 40px;
+}

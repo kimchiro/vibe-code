@@ -1,0 +1,452 @@
+/* Searchbar 컴포넌트 스타일 */
+
+/* CSS 변수 정의 */
+.searchbarContainer {
+  --color-border-default: #C7C7C7;
+  --color-border-focus: #6DA5FA;
+  --color-border-error: #F03851;
+  --color-text-primary: #000000;
+  --color-text-secondary: #777777;
+  --color-text-placeholder: #ABABAB;
+  --color-background-default: #FFFFFF;
+  --color-background-subtle: #F2F2F2;
+  --color-icon-default: #ABABAB;
+  --color-icon-active: #6DA5FA;
+  
+  /* 다크 모드 색상 */
+  --color-border-default-dark: #5F5F5F;
+  --color-border-focus-dark: #93BEFF;
+  --color-border-error-dark: #F4677A;
+  --color-text-primary-dark: #FFFFFF;
+  --color-text-secondary-dark: #C7C7C7;
+  --color-text-placeholder-dark: #919191;
+  --color-background-default-dark: #1C1C1C;
+  --color-background-subtle-dark: #333333;
+  --color-icon-default-dark: #919191;
+  --color-icon-active-dark: #93BEFF;
+}
+
+/* 기본 컨테이너 스타일 */
+.searchbarContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+/* Input 래퍼 */
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  border-radius: 100px;
+  border: 1px solid var(--color-border-default);
+  background-color: var(--color-background-default);
+}
+
+.inputWrapper:focus-within {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(109, 165, 250, 0.1);
+}
+
+/* 기본 Input 스타일 */
+.searchbarInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-text-primary);
+  font-family: inherit;
+  font-weight: 500;
+  letter-spacing: -0.16px;
+}
+
+.searchbarInput::placeholder {
+  color: var(--color-text-placeholder);
+}
+
+.searchbarInput:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* 아이콘 공통 스타일 */
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-icon-default);
+}
+
+.leftIcon {
+  margin-left: 16px;
+  margin-right: 8px;
+}
+
+.rightIcon {
+  margin-left: 8px;
+  margin-right: 16px;
+}
+
+/* 검색 아이콘 */
+.searchIcon {
+  width: 24px;
+  height: 24px;
+}
+
+/* 클리어 버튼 */
+.clearButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 50%;
+  color: var(--color-icon-default);
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.clearButton:hover {
+  background-color: var(--color-background-subtle);
+  color: var(--color-icon-active);
+}
+
+.clearButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* 로딩 아이콘 */
+.loadingIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  font-size: 12px;
+  color: var(--color-icon-default);
+}
+
+/* 헬퍼 텍스트 */
+.helperText {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+.errorText {
+  color: var(--color-border-error);
+}
+
+/* 상태별 스타일 */
+.disabled .inputWrapper {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--color-background-subtle);
+}
+
+.error .inputWrapper {
+  border-color: var(--color-border-error);
+}
+
+.error .inputWrapper:focus-within {
+  border-color: var(--color-border-error);
+  box-shadow: 0 0 0 3px rgba(240, 56, 81, 0.1);
+}
+
+.loading .inputWrapper {
+  cursor: wait;
+}
+
+/* 아이콘 위치 조정 */
+.hasLeftIcon .searchbarInput {
+  padding-left: 0;
+}
+
+.hasRightIcon .searchbarInput {
+  padding-right: 0;
+}
+
+/* ============================================= */
+/* SIZE VARIANTS */
+/* ============================================= */
+
+/* Small Size */
+.size-small .inputWrapper {
+  height: 36px;
+}
+
+.size-small .searchbarInput {
+  font-size: 14px;
+  line-height: 20px;
+  padding: 8px 12px;
+}
+
+.size-small .leftIcon {
+  margin-left: 12px;
+  margin-right: 6px;
+}
+
+.size-small .rightIcon {
+  margin-left: 6px;
+  margin-right: 12px;
+}
+
+.size-small .searchIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.size-small .clearButton,
+.size-small .loadingIcon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Medium Size (기본값 - Figma 디자인 기준) */
+.size-medium .inputWrapper {
+  height: 48px;
+}
+
+.size-medium .searchbarInput {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 12px 16px;
+}
+
+.size-medium .leftIcon {
+  margin-left: 16px;
+  margin-right: 8px;
+}
+
+.size-medium .rightIcon {
+  margin-left: 8px;
+  margin-right: 16px;
+}
+
+.size-medium .searchIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.size-medium .clearButton,
+.size-medium .loadingIcon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Large Size */
+.size-large .inputWrapper {
+  height: 56px;
+}
+
+.size-large .searchbarInput {
+  font-size: 18px;
+  line-height: 26px;
+  padding: 15px 20px;
+}
+
+.size-large .leftIcon {
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+.size-large .rightIcon {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.size-large .searchIcon {
+  width: 28px;
+  height: 28px;
+}
+
+.size-large .clearButton,
+.size-large .loadingIcon {
+  width: 28px;
+  height: 28px;
+}
+
+/* ============================================= */
+/* VARIANT STYLES */
+/* ============================================= */
+
+/* Primary Variant */
+.variant-primary {
+  --border-color: #C7C7C7;
+  --focus-color: #6DA5FA;
+  --background-color: #FFFFFF;
+}
+
+.variant-primary .inputWrapper:focus-within {
+  border-color: var(--focus-color);
+  box-shadow: 0 0 0 3px rgba(109, 165, 250, 0.1);
+}
+
+.variant-primary .inputWrapper:focus-within .icon {
+  color: var(--focus-color);
+}
+
+/* Secondary Variant */
+.variant-secondary {
+  --border-color: #D4D3D3;
+  --focus-color: #3A5CF3;
+  --background-color: #F2F2F2;
+}
+
+.variant-secondary .inputWrapper {
+  background-color: var(--background-color);
+  border-color: var(--border-color);
+}
+
+.variant-secondary .inputWrapper:focus-within {
+  border-color: var(--focus-color);
+  box-shadow: 0 0 0 3px rgba(58, 92, 243, 0.1);
+  background-color: #FFFFFF;
+}
+
+.variant-secondary .inputWrapper:focus-within .icon {
+  color: var(--focus-color);
+}
+
+/* Tertiary Variant */
+.variant-tertiary {
+  --border-color: transparent;
+  --focus-color: #6DA5FA;
+  --background-color: #F6F6F9;
+}
+
+.variant-tertiary .inputWrapper {
+  background-color: var(--background-color);
+  border-color: var(--border-color);
+}
+
+.variant-tertiary .inputWrapper:focus-within {
+  border-color: var(--focus-color);
+  box-shadow: 0 0 0 3px rgba(109, 165, 250, 0.1);
+  background-color: #FFFFFF;
+}
+
+.variant-tertiary .inputWrapper:focus-within .icon {
+  color: var(--focus-color);
+}
+
+.variant-tertiary .inputWrapper:hover {
+  background-color: #EDEEF2;
+}
+
+/* ============================================= */
+/* THEME STYLES */
+/* ============================================= */
+
+/* Light Theme (기본값) */
+.theme-light {
+  --color-border-default: #C7C7C7;
+  --color-border-focus: #6DA5FA;
+  --color-border-error: #F03851;
+  --color-text-primary: #000000;
+  --color-text-secondary: #777777;
+  --color-text-placeholder: #ABABAB;
+  --color-background-default: #FFFFFF;
+  --color-background-subtle: #F2F2F2;
+  --color-icon-default: #ABABAB;
+  --color-icon-active: #6DA5FA;
+}
+
+/* Dark Theme */
+.theme-dark {
+  --color-border-default: #5F5F5F;
+  --color-border-focus: #93BEFF;
+  --color-border-error: #F4677A;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #C7C7C7;
+  --color-text-placeholder: #919191;
+  --color-background-default: #1C1C1C;
+  --color-background-subtle: #333333;
+  --color-icon-default: #919191;
+  --color-icon-active: #93BEFF;
+}
+
+/* Dark Theme Variant 조합 */
+.theme-dark.variant-primary {
+  --border-color: #5F5F5F;
+  --focus-color: #93BEFF;
+  --background-color: #1C1C1C;
+}
+
+.theme-dark.variant-secondary {
+  --border-color: #777777;
+  --focus-color: #93BEFF;
+  --background-color: #333333;
+}
+
+.theme-dark.variant-secondary .inputWrapper:focus-within {
+  background-color: #1C1C1C;
+}
+
+.theme-dark.variant-tertiary {
+  --border-color: transparent;
+  --focus-color: #93BEFF;
+  --background-color: #333333;
+}
+
+.theme-dark.variant-tertiary .inputWrapper:focus-within {
+  background-color: #1C1C1C;
+}
+
+.theme-dark.variant-tertiary .inputWrapper:hover {
+  background-color: #5F5F5F;
+}
+
+.theme-dark .errorText {
+  color: var(--color-border-error);
+}
+
+.theme-dark .clearButton:hover {
+  background-color: var(--color-background-subtle);
+  color: var(--color-icon-active);
+}
+
+/* ============================================= */
+/* RESPONSIVE DESIGN */
+/* ============================================= */
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .size-medium .inputWrapper {
+    height: 44px;
+  }
+  
+  .size-medium .searchbarInput {
+    font-size: 16px; /* iOS zoom 방지 */
+  }
+  
+  .size-large .inputWrapper {
+    height: 52px;
+  }
+}
+
+/* 접근성 향상 */
+@media (prefers-reduced-motion: reduce) {
+  .inputWrapper,
+  .icon,
+  .clearButton,
+  .spinner {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* 고대비 모드 지원 */
+@media (prefers-contrast: high) {
+  .inputWrapper {
+    border-width: 2px;
+  }
+  
+  .inputWrapper:focus-within {
+    box-shadow: 0 0 0 4px rgba(109, 165, 250, 0.3);
+  }
+}

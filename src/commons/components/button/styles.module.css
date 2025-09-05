@@ -1,0 +1,251 @@
+/* ===== 기본 버튼 스타일 ===== */
+.button {
+  /* 기본 속성 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 포커스 상태 */
+.button:focus-visible {
+  outline: 2px solid #6DA5FA;
+  outline-offset: 2px;
+}
+
+/* ===== 사이즈 변형 ===== */
+.size-small {
+  height: 36px;
+  padding: 8px 16px;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 6px;
+}
+
+.size-medium {
+  height: 48px;
+  padding: 12px 24px;
+  font-size: 16px;
+  line-height: 24px;
+  border-radius: 8px;
+}
+
+.size-large {
+  height: 56px;
+  padding: 16px 32px;
+  font-size: 18px;
+  line-height: 26px;
+  border-radius: 10px;
+}
+
+/* ===== PRIMARY 변형 (피그마 디자인 기준) ===== */
+.variant-primary.theme-light {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #000000;
+}
+
+.variant-primary.theme-light:hover {
+  background-color: #1C1C1C;
+  border-color: #1C1C1C;
+}
+
+.variant-primary.theme-light:active {
+  background-color: #333333;
+  border-color: #333333;
+}
+
+.variant-primary.theme-dark {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+}
+
+.variant-primary.theme-dark:hover {
+  background-color: #F2F2F2;
+  border-color: #F2F2F2;
+}
+
+.variant-primary.theme-dark:active {
+  background-color: #E4E4E4;
+  border-color: #E4E4E4;
+}
+
+/* ===== SECONDARY 변형 ===== */
+.variant-secondary.theme-light {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #D4D3D3;
+}
+
+.variant-secondary.theme-light:hover {
+  background-color: #F2F2F2;
+  border-color: #ABABAB;
+}
+
+.variant-secondary.theme-light:active {
+  background-color: #E4E4E4;
+  border-color: #919191;
+}
+
+.variant-secondary.theme-dark {
+  background-color: #333333;
+  color: #ffffff;
+  border: 1px solid #5F5F5F;
+}
+
+.variant-secondary.theme-dark:hover {
+  background-color: #5F5F5F;
+  border-color: #777777;
+}
+
+.variant-secondary.theme-dark:active {
+  background-color: #777777;
+  border-color: #ABABAB;
+}
+
+/* ===== TERTIARY 변형 ===== */
+.variant-tertiary.theme-light {
+  background-color: transparent;
+  color: #6DA5FA;
+  border: 1px solid transparent;
+}
+
+.variant-tertiary.theme-light:hover {
+  background-color: #F0F7FF;
+  color: #3A5CF3;
+}
+
+.variant-tertiary.theme-light:active {
+  background-color: #DBEEFF;
+  color: #274AE1;
+}
+
+.variant-tertiary.theme-dark {
+  background-color: transparent;
+  color: #93BEFF;
+  border: 1px solid transparent;
+}
+
+.variant-tertiary.theme-dark:hover {
+  background-color: rgba(147, 190, 255, 0.1);
+  color: #BDDBFF;
+}
+
+.variant-tertiary.theme-dark:active {
+  background-color: rgba(147, 190, 255, 0.2);
+  color: #DBEEFF;
+}
+
+/* ===== 상태 변형 ===== */
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.loading {
+  cursor: wait;
+  pointer-events: none;
+}
+
+/* ===== 레이아웃 변형 ===== */
+.fullWidth {
+  width: 100%;
+}
+
+.withIcon .text {
+  flex-shrink: 0;
+}
+
+/* ===== 내부 요소 스타일 ===== */
+.text {
+  display: inline-block;
+  font-weight: inherit;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.size-small .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.size-medium .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.size-large .icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* ===== 로딩 스피너 ===== */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.size-small .spinner {
+  width: 14px;
+  height: 14px;
+  border-width: 1.5px;
+}
+
+.size-large .spinner {
+  width: 18px;
+  height: 18px;
+  border-width: 2.5px;
+}
+
+/* ===== 포커스 링 개선 ===== */
+.variant-primary.theme-dark:focus-visible {
+  outline-color: #93BEFF;
+}
+
+.variant-tertiary:focus-visible {
+  outline-color: currentColor;
+}
+
+/* ===== 반응형 디자인 ===== */
+@media (max-width: 768px) {
+  .size-small {
+    height: 32px;
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  
+  .size-medium {
+    height: 44px;
+    padding: 10px 20px;
+    font-size: 15px;
+    min-width: 100px;
+  }
+  
+  .size-large {
+    height: 52px;
+    padding: 14px 28px;
+    font-size: 17px;
+  }
+}

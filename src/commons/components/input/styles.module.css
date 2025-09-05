@@ -1,0 +1,390 @@
+/* ===== 기본 컨테이너 스타일 ===== */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.container.fullWidth {
+  width: 100%;
+}
+
+.container.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ===== 라벨 스타일 ===== */
+.label {
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
+  margin-bottom: 4px;
+}
+
+/* ===== 인풋 래퍼 스타일 ===== */
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #D4D3D3;
+  background-color: #ffffff;
+  transition: all 0.2s ease-in-out;
+}
+
+.inputWrapper:focus-within {
+  outline: 2px solid #6DA5FA;
+  outline-offset: 1px;
+}
+
+/* ===== 사이즈 변형 ===== */
+.inputWrapper.size-small {
+  height: 36px;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.inputWrapper.size-medium {
+  height: 48px;
+  padding: 12px 16px;
+  border-radius: 8px;
+}
+
+.inputWrapper.size-large {
+  height: 56px;
+  padding: 16px 20px;
+  border-radius: 10px;
+}
+
+/* ===== PRIMARY 변형 (피그마 디자인 기준) ===== */
+.inputWrapper.variant-primary.theme-light {
+  background-color: #ffffff;
+  border-color: #D4D3D3;
+}
+
+.inputWrapper.variant-primary.theme-light:hover {
+  border-color: #ABABAB;
+}
+
+.inputWrapper.variant-primary.theme-light:focus-within {
+  border-color: #6DA5FA;
+}
+
+.inputWrapper.variant-primary.theme-dark {
+  background-color: #333333;
+  border-color: #5F5F5F;
+}
+
+.inputWrapper.variant-primary.theme-dark:hover {
+  border-color: #777777;
+}
+
+.inputWrapper.variant-primary.theme-dark:focus-within {
+  border-color: #93BEFF;
+}
+
+/* ===== SECONDARY 변형 ===== */
+.inputWrapper.variant-secondary.theme-light {
+  background-color: #F2F2F2;
+  border-color: #E4E4E4;
+}
+
+.inputWrapper.variant-secondary.theme-light:hover {
+  background-color: #EDEEF2;
+  border-color: #C7C9D5;
+}
+
+.inputWrapper.variant-secondary.theme-light:focus-within {
+  background-color: #ffffff;
+  border-color: #6DA5FA;
+}
+
+.inputWrapper.variant-secondary.theme-dark {
+  background-color: #1C1C1C;
+  border-color: #333333;
+}
+
+.inputWrapper.variant-secondary.theme-dark:hover {
+  background-color: #333333;
+  border-color: #5F5F5F;
+}
+
+.inputWrapper.variant-secondary.theme-dark:focus-within {
+  background-color: #333333;
+  border-color: #93BEFF;
+}
+
+/* ===== TERTIARY 변형 ===== */
+.inputWrapper.variant-tertiary.theme-light {
+  background-color: transparent;
+  border-color: transparent;
+  border-bottom: 1px solid #D4D3D3;
+  border-radius: 0;
+}
+
+.inputWrapper.variant-tertiary.theme-light:hover {
+  border-bottom-color: #ABABAB;
+}
+
+.inputWrapper.variant-tertiary.theme-light:focus-within {
+  border-bottom-color: #6DA5FA;
+}
+
+.inputWrapper.variant-tertiary.theme-dark {
+  background-color: transparent;
+  border-color: transparent;
+  border-bottom: 1px solid #5F5F5F;
+  border-radius: 0;
+}
+
+.inputWrapper.variant-tertiary.theme-dark:hover {
+  border-bottom-color: #777777;
+}
+
+.inputWrapper.variant-tertiary.theme-dark:focus-within {
+  border-bottom-color: #93BEFF;
+}
+
+/* ===== 실제 인풋 스타일 ===== */
+.input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000000;
+}
+
+.input::placeholder {
+  color: #ABABAB;
+  font-weight: 500;
+}
+
+.input:disabled {
+  cursor: not-allowed;
+  color: #ABABAB;
+}
+
+/* 인풋 사이즈별 폰트 크기 */
+.input.size-small {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.input.size-medium {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.input.size-large {
+  font-size: 18px;
+  line-height: 26px;
+}
+
+/* 다크 테마 인풋 텍스트 */
+.input.theme-dark {
+  color: #ffffff;
+}
+
+.input.theme-dark::placeholder {
+  color: #919191;
+}
+
+/* ===== 아이콘 스타일 ===== */
+.leftIcon,
+.rightIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #777777;
+  transition: color 0.2s ease-in-out;
+}
+
+.leftIcon:hover,
+.rightIcon:hover {
+  color: #333333;
+}
+
+.leftIcon:disabled,
+.rightIcon:disabled {
+  cursor: default;
+  color: #ABABAB;
+}
+
+.leftIcon {
+  margin-right: 8px;
+}
+
+.rightIcon {
+  margin-left: 8px;
+}
+
+/* 아이콘 크기 */
+.size-small .leftIcon,
+.size-small .rightIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.size-medium .leftIcon,
+.size-medium .rightIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.size-large .leftIcon,
+.size-large .rightIcon {
+  width: 24px;
+  height: 24px;
+}
+
+/* 아이콘이 있을 때 인풋 패딩 조정 */
+.withLeftIcon.size-small {
+  padding-left: 8px;
+}
+
+.withLeftIcon.size-medium {
+  padding-left: 12px;
+}
+
+.withLeftIcon.size-large {
+  padding-left: 16px;
+}
+
+.withRightIcon.size-small {
+  padding-right: 8px;
+}
+
+.withRightIcon.size-medium {
+  padding-right: 12px;
+}
+
+.withRightIcon.size-large {
+  padding-right: 16px;
+}
+
+/* ===== 상태 변형 ===== */
+.inputWrapper.error,
+.inputWrapper.error:hover,
+.inputWrapper.error.variant-primary.theme-light,
+.inputWrapper.error.variant-primary.theme-dark,
+.inputWrapper.error.variant-secondary.theme-light,
+.inputWrapper.error.variant-secondary.theme-dark,
+.inputWrapper.error.variant-tertiary.theme-light,
+.inputWrapper.error.variant-tertiary.theme-dark {
+  border-color: #F03851;
+}
+
+.inputWrapper.error:focus-within {
+  outline-color: #F03851;
+}
+
+.inputWrapper.success,
+.inputWrapper.success:hover,
+.inputWrapper.success.variant-primary.theme-light,
+.inputWrapper.success.variant-primary.theme-dark,
+.inputWrapper.success.variant-secondary.theme-light,
+.inputWrapper.success.variant-secondary.theme-dark,
+.inputWrapper.success.variant-tertiary.theme-light,
+.inputWrapper.success.variant-tertiary.theme-dark {
+  border-color: #12B75F;
+}
+
+.inputWrapper.success:focus-within {
+  outline-color: #12B75F;
+}
+
+.inputWrapper.disabled {
+  background-color: #F2F2F2;
+  border-color: #E4E4E4;
+  cursor: not-allowed;
+}
+
+.inputWrapper.disabled.theme-dark {
+  background-color: #1C1C1C;
+  border-color: #333333;
+}
+
+/* ===== 헬퍼 텍스트 스타일 ===== */
+.helperText {
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #777777;
+  margin-top: 4px;
+}
+
+.helperText.errorText {
+  color: #F03851;
+}
+
+/* ===== 반응형 디자인 ===== */
+@media (max-width: 768px) {
+  .inputWrapper.size-small {
+    height: 32px;
+    padding: 6px 10px;
+  }
+
+  .inputWrapper.size-medium {
+    height: 44px;
+    padding: 10px 14px;
+  }
+
+  .inputWrapper.size-large {
+    height: 52px;
+    padding: 14px 18px;
+  }
+
+  .input.size-small {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .input.size-medium {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .input.size-large {
+    font-size: 17px;
+    line-height: 24px;
+  }
+}
+
+/* ===== 다크 테마 아이콘 색상 ===== */
+.inputWrapper.theme-dark .leftIcon,
+.inputWrapper.theme-dark .rightIcon {
+  color: #C7C7C7;
+}
+
+.inputWrapper.theme-dark .leftIcon:hover,
+.inputWrapper.theme-dark .rightIcon:hover {
+  color: #ffffff;
+}
+
+.inputWrapper.theme-dark .leftIcon:disabled,
+.inputWrapper.theme-dark .rightIcon:disabled {
+  color: #777777;
+}
+
+/* ===== 다크 테마 라벨 ===== */
+.container.theme-dark .label {
+  color: #ffffff;
+}
+
+/* ===== 다크 테마 헬퍼 텍스트 ===== */
+.container.theme-dark .helperText {
+  color: #C7C7C7;
+}

@@ -1,0 +1,255 @@
+/* Toggle 컴포넌트 스타일 - 피그마 디자인 기반 */
+
+/* Container */
+.container {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* Hidden Input */
+.input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+
+/* Toggle Switch */
+.toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.toggle:focus-visible {
+  outline: 2px solid #6DA5FA;
+  outline-offset: 2px;
+}
+
+.toggle.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Track (배경) */
+.track {
+  position: relative;
+  border-radius: 100px;
+  transition: all 0.2s ease-in-out;
+  flex-shrink: 0;
+}
+
+/* Thumb (원형 스위치) */
+.thumb {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Size Variants */
+/* Medium (기본) - 피그마 기준 */
+.size-medium .track {
+  width: 58px;
+  height: 32px;
+}
+
+.size-medium .thumb {
+  width: 24px;
+  height: 24px;
+  left: 4px;
+}
+
+.size-medium.checked .thumb {
+  left: 30px; /* 58px - 24px - 4px */
+}
+
+/* Small */
+.size-small .track {
+  width: 46px;
+  height: 26px;
+}
+
+.size-small .thumb {
+  width: 20px;
+  height: 20px;
+  left: 3px;
+}
+
+.size-small.checked .thumb {
+  left: 23px; /* 46px - 20px - 3px */
+}
+
+/* Large */
+.size-large .track {
+  width: 70px;
+  height: 38px;
+}
+
+.size-large .thumb {
+  width: 30px;
+  height: 30px;
+  left: 4px;
+}
+
+.size-large.checked .thumb {
+  left: 36px; /* 70px - 30px - 4px */
+}
+
+/* Theme & Variant Combinations */
+
+/* Light Theme */
+.theme-light .track {
+  background-color: #e4e4e4; /* 피그마 꺼짐 상태 색상 */
+}
+
+.theme-light.checked .track {
+  background-color: #3ad84a; /* 피그마 켜짐 상태 색상 */
+}
+
+/* Primary Variant - Light */
+.theme-light.variant-primary.checked .track {
+  background-color: #3ad84a;
+}
+
+/* Secondary Variant - Light */
+.theme-light.variant-secondary.checked .track {
+  background-color: #6DA5FA;
+}
+
+/* Tertiary Variant - Light */
+.theme-light.variant-tertiary.checked .track {
+  background-color: #777777;
+}
+
+/* Dark Theme */
+.theme-dark .track {
+  background-color: #5F5F5F;
+}
+
+.theme-dark.checked .track {
+  background-color: #15D66F;
+}
+
+/* Primary Variant - Dark */
+.theme-dark.variant-primary.checked .track {
+  background-color: #15D66F;
+}
+
+/* Secondary Variant - Dark */
+.theme-dark.variant-secondary.checked .track {
+  background-color: #93BEFF;
+}
+
+/* Tertiary Variant - Dark */
+.theme-dark.variant-tertiary.checked .track {
+  background-color: #C7C7C7;
+}
+
+/* Dark Theme Thumb */
+.theme-dark .thumb {
+  background-color: #ffffff;
+}
+
+/* Content (Label & Description) */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #1C1C1C;
+  cursor: pointer;
+  margin: 0;
+  transition: color 0.2s ease-in-out;
+}
+
+.label.disabled {
+  color: #ABABAB;
+  cursor: not-allowed;
+}
+
+.description {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #777777;
+  margin: 0;
+  transition: color 0.2s ease-in-out;
+}
+
+.description.disabled {
+  color: #ABABAB;
+}
+
+/* Dark Theme Text */
+.theme-dark .label {
+  color: #ffffff;
+}
+
+.theme-dark .label.disabled {
+  color: #919191;
+}
+
+.theme-dark .description {
+  color: #C7C7C7;
+}
+
+.theme-dark .description.disabled {
+  color: #919191;
+}
+
+/* Hover States */
+.toggle:not(.disabled):hover .track {
+  transform: scale(1.02);
+}
+
+.toggle:not(.disabled):hover .thumb {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Active States */
+.toggle:not(.disabled):active .track {
+  transform: scale(0.98);
+}
+
+/* Focus States */
+.toggle:focus-visible .track {
+  outline: 2px solid #6DA5FA;
+  outline-offset: 2px;
+}
+
+/* Accessibility - High Contrast Mode */
+@media (prefers-contrast: high) {
+  .track {
+    border: 2px solid currentColor;
+  }
+  
+  .thumb {
+    border: 1px solid currentColor;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .toggle,
+  .track,
+  .thumb,
+  .label,
+  .description {
+    transition: none;
+  }
+}

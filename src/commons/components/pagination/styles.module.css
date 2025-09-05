@@ -1,0 +1,292 @@
+/* ===== BASE PAGINATION STYLES ===== */
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+/* ===== NAVIGATION BUTTONS ===== */
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.navButton:hover:not(.disabled) {
+  opacity: 0.7;
+}
+
+.navButton.disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+/* ===== PAGE NUMBERS CONTAINER ===== */
+.pageNumbers {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ===== PAGE BUTTONS ===== */
+.pageButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+  font-weight: 400;
+  transition: all 0.2s ease;
+  background: #ffffff;
+  color: #777777;
+}
+
+.pageButton:hover:not(:disabled) {
+  opacity: 0.8;
+}
+
+.pageButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.pageButton.active {
+  background: #f2f2f2;
+  color: #000000;
+  font-weight: 500;
+}
+
+/* ===== SIZE VARIANTS ===== */
+/* Small Size */
+.pagination--small .pageButton {
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.14px;
+}
+
+.pagination--small .navButton {
+  width: 20px;
+  height: 20px;
+}
+
+.pagination--small .pageNumbers {
+  gap: 6px;
+}
+
+.pagination--small {
+  gap: 6px;
+}
+
+/* Medium Size (기본) */
+.pagination--medium .pageButton {
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+}
+
+.pagination--medium .navButton {
+  width: 24px;
+  height: 24px;
+}
+
+.pagination--medium .pageNumbers {
+  gap: 8px;
+}
+
+.pagination--medium {
+  gap: 8px;
+}
+
+/* Large Size */
+.pagination--large .pageButton {
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -0.18px;
+}
+
+.pagination--large .navButton {
+  width: 28px;
+  height: 28px;
+}
+
+.pagination--large .pageNumbers {
+  gap: 10px;
+}
+
+.pagination--large {
+  gap: 10px;
+}
+
+/* ===== VARIANT STYLES ===== */
+/* Primary Variant (기본) */
+.pagination--primary .pageButton {
+  background: #ffffff;
+  color: #777777;
+}
+
+.pagination--primary .pageButton.active {
+  background: #f2f2f2;
+  color: #000000;
+}
+
+.pagination--primary .pageButton:hover:not(.active):not(:disabled) {
+  background: #f8f8f8;
+}
+
+/* Secondary Variant */
+.pagination--secondary .pageButton {
+  background: #f8f8fa;
+  color: #5f5f5f;
+  border: 1px solid #edeef2;
+}
+
+.pagination--secondary .pageButton.active {
+  background: #6da5fa;
+  color: #ffffff;
+  border-color: #6da5fa;
+}
+
+.pagination--secondary .pageButton:hover:not(.active):not(:disabled) {
+  background: #f0f7ff;
+  border-color: #bddbff;
+}
+
+/* Tertiary Variant */
+.pagination--tertiary .pageButton {
+  background: transparent;
+  color: #777777;
+  border: 1px solid #d4d3d3;
+}
+
+.pagination--tertiary .pageButton.active {
+  background: #333333;
+  color: #ffffff;
+  border-color: #333333;
+}
+
+.pagination--tertiary .pageButton:hover:not(.active):not(:disabled) {
+  background: #f2f2f2;
+  border-color: #ababab;
+}
+
+/* ===== THEME VARIANTS ===== */
+/* Light Theme (기본) */
+.pagination--light .navButton {
+  filter: none;
+}
+
+/* Dark Theme */
+.pagination--dark {
+  filter: invert(1);
+}
+
+.pagination--dark .pageButton {
+  background: #333333;
+  color: #c7c7c7;
+}
+
+.pagination--dark .pageButton.active {
+  background: #1c1c1c;
+  color: #ffffff;
+}
+
+.pagination--dark .pageButton:hover:not(.active):not(:disabled) {
+  background: #5f5f5f;
+}
+
+/* Dark Theme Secondary */
+.pagination--dark.pagination--secondary .pageButton {
+  background: #5f5f5f;
+  color: #c7c7c7;
+  border-color: #777777;
+}
+
+.pagination--dark.pagination--secondary .pageButton.active {
+  background: #93beff;
+  color: #000000;
+  border-color: #93beff;
+}
+
+.pagination--dark.pagination--secondary .pageButton:hover:not(.active):not(:disabled) {
+  background: #777777;
+  border-color: #919191;
+}
+
+/* Dark Theme Tertiary */
+.pagination--dark.pagination--tertiary .pageButton {
+  background: transparent;
+  color: #c7c7c7;
+  border-color: #777777;
+}
+
+.pagination--dark.pagination--tertiary .pageButton.active {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+.pagination--dark.pagination--tertiary .pageButton:hover:not(.active):not(:disabled) {
+  background: #333333;
+  border-color: #919191;
+}
+
+/* ===== ACCESSIBILITY ===== */
+.pageButton:focus {
+  outline: 2px solid #6da5fa;
+  outline-offset: 2px;
+}
+
+.navButton:focus {
+  outline: 2px solid #6da5fa;
+  outline-offset: 2px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .pagination {
+    gap: 4px;
+  }
+  
+  .pageNumbers {
+    gap: 4px;
+  }
+  
+  .pagination--small .pageButton {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  
+  .pagination--medium .pageButton {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+  .pagination--large .pageButton {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}

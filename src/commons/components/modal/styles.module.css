@@ -1,0 +1,245 @@
+/* ===== 기본 모달 스타일 ===== */
+.modal {
+  /* Figma 디자인 기준: 480x200px */
+  width: 480px;
+  height: 200px;
+  background-color: var(--color-gray-white);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* 레이아웃 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  
+  /* 폰트 패밀리 */
+  font-family: var(--font-family-korean);
+}
+
+/* ===== 테마 변형 ===== */
+.modal.theme-light {
+  background-color: var(--color-gray-white);
+  color: var(--color-gray-black);
+}
+
+.modal.theme-dark {
+  background-color: var(--color-gray-90);
+  color: var(--color-gray-white);
+}
+
+/* ===== 사이즈 변형 ===== */
+.modal.size-small {
+  width: 360px;
+  height: 160px;
+  padding: 20px;
+}
+
+.modal.size-medium {
+  width: 480px;
+  height: 200px;
+  padding: 24px;
+}
+
+.modal.size-large {
+  width: 600px;
+  height: 240px;
+  padding: 28px;
+}
+
+/* ===== 상태 변형 ===== */
+.modal.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ===== 콘텐츠 영역 ===== */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 16px;
+  flex: 1;
+}
+
+/* ===== 제목 스타일 ===== */
+.title {
+  /* Figma 디자인: Pretendard Variable Bold 24px */
+  font-family: var(--font-family-korean);
+  font-weight: var(--font-weight-bold);
+  font-size: 24px;
+  line-height: 24px;
+  letter-spacing: -0.24px;
+  margin: 0;
+  text-align: center;
+}
+
+.title.theme-light {
+  color: var(--color-gray-black);
+}
+
+.title.theme-dark {
+  color: var(--color-gray-white);
+}
+
+/* ===== 설명 스타일 ===== */
+.description {
+  /* Figma 디자인: Pretendard Variable Medium 20px */
+  font-family: var(--font-family-korean);
+  font-weight: var(--font-weight-medium);
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+  margin: 0;
+  text-align: center;
+}
+
+.description.theme-light {
+  color: var(--color-gray-80);
+}
+
+.description.theme-dark {
+  color: var(--color-gray-30);
+}
+
+/* ===== 버튼 영역 ===== */
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 48px;
+}
+
+/* Single Action: 버튼 전체 너비 */
+.buttons.actions-single {
+  width: 100%;
+}
+
+.singleActionButton {
+  width: 100% !important;
+  flex: 1 !important;
+}
+
+/* Dual Action: 104px 고정 너비 버튼 (피그마 디자인 기준) */
+.buttons.actions-dual {
+  width: 100%;
+  justify-content: center;
+}
+
+.dualActionButton {
+  width: 104px !important;
+  min-width: 104px !important;
+  max-width: 104px !important;
+  flex: none !important;
+}
+
+/* ===== 개별 버튼 스타일 ===== */
+.confirmButton {
+  height: 48px;
+}
+
+.cancelButton {
+  height: 48px;
+}
+
+/* ===== Variant별 특별 스타일링 ===== */
+.modal.variant-info {
+  /* Info 모달: 기본 스타일 사용 */
+  border: none;
+}
+
+.modal.variant-danger {
+  /* Danger 모달: 경고를 나타내는 미묘한 스타일링 */
+  border: none;
+}
+
+.modal.variant-danger.theme-light .title {
+  color: var(--color-gray-black); /* Figma 디자인에서는 검은색 유지 */
+}
+
+.modal.variant-danger.theme-dark .title {
+  color: var(--color-gray-white); /* Dark 테마에서는 흰색 */
+}
+
+/* ===== 반응형 디자인 ===== */
+@media (max-width: 520px) {
+  .modal.size-small,
+  .modal.size-medium,
+  .modal.size-large {
+    width: calc(100vw - 32px);
+    min-width: 320px;
+    margin: 0 16px;
+  }
+  
+  .modal.size-small {
+    max-width: 360px;
+  }
+  
+  .modal.size-medium {
+    max-width: 480px;
+  }
+  
+  .modal.size-large {
+    max-width: 600px;
+  }
+  
+  .title {
+    font-size: 22px;
+    line-height: 28px;
+  }
+  
+  .description {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  
+  .buttons.actions-dual {
+    flex-direction: column;
+    height: auto;
+    gap: 8px;
+  }
+  
+  .buttons.actions-dual .cancelButton,
+  .buttons.actions-dual .confirmButton {
+    width: 100%;
+    flex: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .modal.size-small {
+    padding: 16px;
+    height: auto;
+    min-height: 140px;
+  }
+  
+  .modal.size-medium {
+    padding: 20px;
+    height: auto;
+    min-height: 160px;
+  }
+  
+  .modal.size-large {
+    padding: 24px;
+    height: auto;
+    min-height: 180px;
+  }
+  
+  .title {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  
+  .description {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  
+  .content {
+    gap: 12px;
+  }
+}

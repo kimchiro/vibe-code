@@ -1,0 +1,460 @@
+/* ===== 기본 SelectBox 스타일 ===== */
+.selectBox {
+  /* 기본 속성 */
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  cursor: pointer;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-weight: 500;
+  outline: none;
+  user-select: none;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* 포커스 상태 */
+.selectBox:focus-visible {
+  outline: 2px solid #6DA5FA;
+  outline-offset: 2px;
+}
+
+/* ===== 트리거 영역 ===== */
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%; /* 부모 컨테이너(.selectBox)의 높이와 일치 */
+  padding: 0 12px;
+  border: 1px solid;
+  border-radius: inherit;
+  background-color: inherit;
+  transition: all 0.2s ease-in-out;
+  
+}
+
+.text {
+  flex: 1;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  transition: transform 0.2s ease-in-out;
+  flex-shrink: 0;
+}
+
+.open .arrow {
+  transform: rotate(180deg);
+}
+
+/* ===== 사이즈 변형 ===== */
+.size-small {
+  min-width: 80px;
+  height: 36px;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 6px;
+}
+
+.size-small .trigger {
+  padding: 0 8px;
+}
+
+.size-small .arrow {
+  width: 16px;
+  height: 16px;
+}
+
+.size-medium {
+  min-width: 120px;
+  height: 48px;
+  font-size: 16px;
+  line-height: 24px;
+  border-radius: 8px;
+}
+
+.size-medium .trigger {
+  padding: 0 12px;
+}
+
+.size-medium .arrow {
+  width: 20px;
+  height: 20px;
+}
+
+.size-large {
+  min-width: 160px;
+  height: 56px;
+  font-size: 18px;
+  line-height: 26px;
+  border-radius: 10px;
+}
+
+.size-large .trigger {
+  padding: 0 16px;
+}
+
+.size-large .arrow {
+  width: 24px;
+  height: 24px;
+}
+
+/* ===== PRIMARY 변형 (피그마 디자인 기준) ===== */
+.variant-primary.theme-light {
+  background-color: #ffffff;
+  color: #1c1c1c;
+}
+
+.variant-primary.theme-light .trigger {
+  border-color: #c7c7c7;
+}
+
+.variant-primary.theme-light:hover .trigger {
+  border-color: #ababab;
+  background-color: #f2f2f2;
+}
+
+.variant-primary.theme-light.open .trigger {
+  border-color: #6DA5FA;
+  background-color: #ffffff;
+}
+
+.variant-primary.theme-dark {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.variant-primary.theme-dark .trigger {
+  border-color: #5f5f5f;
+}
+
+.variant-primary.theme-dark:hover .trigger {
+  border-color: #777777;
+  background-color: #5f5f5f;
+}
+
+.variant-primary.theme-dark.open .trigger {
+  border-color: #93BEFF;
+  background-color: #333333;
+}
+
+/* ===== SECONDARY 변형 ===== */
+.variant-secondary.theme-light {
+  background-color: #f2f2f2;
+  color: #1c1c1c;
+}
+
+.variant-secondary.theme-light .trigger {
+  border-color: #d4d3d3;
+}
+
+.variant-secondary.theme-light:hover .trigger {
+  border-color: #ababab;
+  background-color: #e4e4e4;
+}
+
+.variant-secondary.theme-light.open .trigger {
+  border-color: #6DA5FA;
+  background-color: #f2f2f2;
+}
+
+.variant-secondary.theme-dark {
+  background-color: #5f5f5f;
+  color: #ffffff;
+}
+
+.variant-secondary.theme-dark .trigger {
+  border-color: #777777;
+}
+
+.variant-secondary.theme-dark:hover .trigger {
+  border-color: #ababab;
+  background-color: #777777;
+}
+
+.variant-secondary.theme-dark.open .trigger {
+  border-color: #93BEFF;
+  background-color: #5f5f5f;
+}
+
+/* ===== TERTIARY 변형 ===== */
+.variant-tertiary.theme-light {
+  background-color: transparent;
+  color: #6DA5FA;
+}
+
+.variant-tertiary.theme-light .trigger {
+  border-color: #6DA5FA;
+}
+
+.variant-tertiary.theme-light:hover .trigger {
+  border-color: #3A5CF3;
+  background-color: #f0f7ff;
+}
+
+.variant-tertiary.theme-light.open .trigger {
+  border-color: #3A5CF3;
+  background-color: transparent;
+}
+
+.variant-tertiary.theme-dark {
+  background-color: transparent;
+  color: #93BEFF;
+}
+
+.variant-tertiary.theme-dark .trigger {
+  border-color: #93BEFF;
+}
+
+.variant-tertiary.theme-dark:hover .trigger {
+  border-color: #BDDBFF;
+  background-color: rgba(147, 190, 255, 0.1);
+}
+
+.variant-tertiary.theme-dark.open .trigger {
+  border-color: #BDDBFF;
+  background-color: transparent;
+}
+
+/* ===== 상태 변형 ===== */
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.disabled:hover .trigger {
+  border-color: inherit !important;
+  background-color: inherit !important;
+}
+
+/* ===== 레이아웃 변형 ===== */
+.fullWidth {
+  width: 100%;
+}
+
+/* ===== 드롭다운 옵션 스타일 ===== */
+.options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  border: 2px solid; /* 테두리 두께 증가로 하위 옵션들을 확실히 포함 */
+  border-radius: 8px;
+  background-color: inherit;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease-in-out;
+  overflow: hidden; /* 테두리 내부에서만 내용 표시 - 하위 옵션들 완전 포함 */
+  height: 0; /* 초기 높이 0 */
+  min-height: 0;
+  max-height: none; /* 동적 높이를 위해 제거 */
+  box-sizing: border-box; /* 테두리 포함한 전체 크기 계산 */
+}
+
+.options.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  margin-top: 4px;
+  /* height는 JavaScript에서 동적으로 설정 */
+}
+
+/* 옵션별 테마 스타일 - 피그마 디자인에 맞게 조정 */
+.options.variant-primary.theme-light {
+  background-color: #ffffff;
+  border-color: #c7c7c7;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* 피그마 디자인 그림자 강화 */
+}
+
+.options.variant-primary.theme-dark {
+  background-color: #333333;
+  border-color: #5f5f5f;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.options.variant-secondary.theme-light {
+  background-color: #ffffff;
+  border-color: #d4d3d3;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.options.variant-secondary.theme-dark {
+  background-color: #5f5f5f;
+  border-color: #777777;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.options.variant-tertiary.theme-light {
+  background-color: #ffffff;
+  border-color: #6DA5FA;
+  box-shadow: 0 4px 12px rgba(109, 165, 250, 0.2); /* 브랜드 색상 그림자 */
+}
+
+.options.variant-tertiary.theme-dark {
+  background-color: #333333;
+  border-color: #93BEFF;
+  box-shadow: 0 4px 12px rgba(147, 190, 255, 0.2);
+}
+
+/* ===== 개별 옵션 스타일 ===== */
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-weight: 400; /* 기본 Regular */
+  border: none; /* 개별 옵션에는 테두리 완전 제거 */
+  border-radius: 0; /* 개별 옵션은 모서리 둥글게 하지 않음 */
+  background-color: transparent; /* 기본 배경 투명 */
+}
+
+.option:first-child {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.option:last-child {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.option:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.option.selected {
+  background-color: #f5FbF3 !important; /* 연한 초록 배경 */
+  color: #299c00 !important; /* 진한 초록 텍스트 */
+  font-weight: 700 !important; /* Bold */
+}
+
+.option.selected:hover {
+  background-color: #e8f5e5 !important; /* 더 진한 초록 배경 */
+}
+
+.optionText {
+  flex: 1;
+  text-align: left;
+}
+
+.checkIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+/* ===== 사이즈별 옵션 스타일 ===== */
+.size-small .option {
+  padding: 8px;
+  font-size: 14px;
+  line-height: 20px;
+  height: 36px;
+}
+
+.size-medium .option {
+  padding: 12px;
+  font-size: 16px;
+  line-height: 24px;
+  height: 48px; /* 피그마 디자인과 일치 */
+}
+
+.size-large .option {
+  padding: 16px;
+  font-size: 18px;
+  line-height: 26px;
+  height: 56px;
+}
+
+/* ===== 옵션 테마별 기본 색상 ===== */
+.variant-primary.theme-light .option,
+.variant-secondary.theme-light .option,
+.variant-tertiary.theme-light .option {
+  color: #5f5f5f; /* 피그마 디자인: 비선택 항목 색상 */
+}
+
+.variant-primary.theme-dark .option,
+.variant-secondary.theme-dark .option,
+.variant-tertiary.theme-dark .option {
+  color: #ffffff;
+}
+
+/* 다크 테마의 선택된 항목은 동일한 스타일 적용 */
+.variant-primary.theme-dark .option.selected,
+.variant-secondary.theme-dark .option.selected,
+.variant-tertiary.theme-dark .option.selected {
+  background-color: #f5FbF3 !important; /* 연한 초록 배경 */
+  color: #299c00 !important; /* 진한 초록 텍스트 */
+  font-weight: 700 !important;
+}
+
+.variant-primary.theme-dark .option.selected:hover,
+.variant-secondary.theme-dark .option.selected:hover,
+.variant-tertiary.theme-dark .option.selected:hover {
+  background-color: #e8f5e5 !important; /* 더 진한 초록 배경 */
+}
+
+/* 비활성화된 옵션 */
+.optionDisabled {
+  cursor: not-allowed !important;
+  opacity: 0.5 !important;
+}
+
+.optionDisabled:hover {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+/* ===== 반응형 디자인 ===== */
+@media (max-width: 768px) {
+  .size-small {
+    min-width: 60px;
+    height: 32px;
+    font-size: 13px;
+  }
+
+  .size-medium {
+    min-width: 100px;
+    height: 44px;
+    font-size: 15px;
+  }
+
+  .size-large {
+    min-width: 140px;
+    height: 52px;
+    font-size: 17px;
+  }
+}
+
+/* 스크롤바 스타일 제거 - 피그마 디자인에서는 스크롤 없이 모든 항목 표시 */
+
+/* 사이즈별 옵션 목록 높이 설정 - 동적 높이로 변경됨 */
+/* 
+.size-small .options {
+  max-height: 216px;
+}
+
+.size-medium .options {
+  max-height: 288px;
+}
+
+.size-large .options {
+  max-height: 336px;
+}
+*/
