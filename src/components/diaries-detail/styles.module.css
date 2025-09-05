@@ -12,23 +12,64 @@
   display: flex;
   width: 1168px;
   height: 84px;
-  background-color: var(--color-surface-secondary);
   border: 1px solid var(--color-border-primary);
   margin-bottom: 24px;
 }
 
-.titleContent {
+.titleSection {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
   width: 100%;
   height: 100%;
+  padding: 16px 0;
+  border-bottom: 2px solid var(--color-neutral-900);
+}
+
+.titleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.emotionInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.emotionIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.emotionText {
+  font-family: var(--font-family-korean-primary);
+  font-size: var(--typography-caption1-korean-desktop-font-size);
+  line-height: var(--typography-caption1-korean-desktop-line-height);
+  font-weight: var(--typography-caption1-korean-desktop-font-weight);
+  letter-spacing: var(--typography-caption1-korean-desktop-letter-spacing);
+  color: var(--color-text-tertiary);
+}
+
+.dateText {
+  font-family: var(--font-family-korean-primary);
+  font-size: var(--typography-body3-korean-desktop-font-size);
+  line-height: var(--typography-body3-korean-desktop-line-height);
+  font-weight: var(--typography-body3-korean-desktop-font-weight);
+  letter-spacing: var(--typography-body3-korean-desktop-letter-spacing);
+  color: var(--color-text-tertiary);
+}
+
+.titleText {
   font-family: var(--font-family-korean-primary);
   font-size: var(--typography-heading1-korean-desktop-font-size);
   line-height: var(--typography-heading1-korean-desktop-line-height);
   font-weight: var(--typography-heading1-korean-desktop-font-weight);
   letter-spacing: var(--typography-heading1-korean-desktop-letter-spacing);
   color: var(--color-text-primary);
+  margin: 0;
 }
 
 /* Detail Content 영역 - 1168 * 169 */
@@ -36,23 +77,43 @@
   display: flex;
   width: 1168px;
   height: 169px;
-  background-color: var(--color-surface-tertiary);
-  border: 1px solid var(--color-border-primary);
   margin-bottom: 24px;
 }
 
-.contentText {
+.contentSection {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
+  padding: 24px 0;
+  position: relative;
+}
+
+.contentText {
+  flex: 1;
   font-family: var(--font-family-korean-primary);
   font-size: var(--typography-body1-korean-desktop-font-size);
   line-height: var(--typography-body1-korean-desktop-line-height);
   font-weight: var(--typography-body1-korean-desktop-font-weight);
   letter-spacing: var(--typography-body1-korean-desktop-letter-spacing);
   color: var(--color-text-secondary);
+  margin: 0;
+  padding-right: 40px;
+}
+
+.copyButton {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.copyButton:hover {
+  background-color: var(--color-surface-secondary);
 }
 
 /* Detail Footer 영역 - 1168 * 56 */
@@ -60,23 +121,26 @@
   display: flex;
   width: 1168px;
   height: 56px;
-  background-color: var(--color-surface-secondary);
-  border: 1px solid var(--color-border-primary);
+  border-bottom: 1px solid var(--color-neutral-900);
   margin-bottom: 24px;
 }
 
-.footerContent {
+.footerButtons {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   width: 100%;
   height: 100%;
-  font-family: var(--font-family-korean-primary);
-  font-size: var(--typography-label1-korean-desktop-font-size);
-  line-height: var(--typography-label1-korean-desktop-line-height);
-  font-weight: var(--typography-label1-korean-desktop-font-weight);
-  letter-spacing: var(--typography-label1-korean-desktop-letter-spacing);
-  color: var(--color-text-tertiary);
+  padding: 0;
+  gap: 12px;
+}
+
+.editButton {
+  width: 80px;
+}
+
+.deleteButton {
+  width: 80px;
 }
 
 /* Retrospect Input 영역 - 1168 * 85 */

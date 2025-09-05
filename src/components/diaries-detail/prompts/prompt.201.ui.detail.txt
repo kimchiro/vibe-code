@@ -8,9 +8,9 @@
             - @02-wireframe.mdc
             - @03-ui.mdc
 
-==============================================
+=============================================
 
-조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: 4dumgofa)
+조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: tvu56m1u)
 조건-피그마) 구현될 컴포넌트 노드ID(detail-title 영역): 3:1073
 조건-피그마) 구현될 컴포넌트 노드ID(detail-content 영역): 3:1083
 조건-피그마) 구현될 컴포넌트 노드ID(detail-footer 영역): 3:1092
@@ -34,6 +34,8 @@
 기존히스토리-참고만) MCP를 연동하여 피그마의 디자인을 이미 만들어져있는 와이어프레임의 detail-title, detail-content, deatil-footer 영역에 그대로 구현할 것.
 
 ==============================================
+
+핵심요구사항)  <span className={styles.emotionText}>{getEmotionLabel(mockDiaryDetail.emotion)} 의 텍스트 사이즈와 , 색상이 피그마 디자인과 다른데 동일하게 구현할것
 
 핵심요구사항) styles_titleSection의 border-bottom을 2px solild black 추가할 것.
 
