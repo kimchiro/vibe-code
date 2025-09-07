@@ -58,12 +58,12 @@ const mockRetrospects: RetrospectData[] = [
   {
     id: '1',
     content: '오늘 하루를 돌아보니 정말 의미있는 시간이었습니다. 친구들과 함께한 시간이 가장 소중했어요.',
-    createdAt: '2024.01.15 14:30'
+    createdAt: '[2024.01.15]'
   },
   {
     id: '2', 
     content: '앞으로는 더 긍정적인 마음가짐으로 살아가려고 합니다.',
-    createdAt: '2024.01.15 15:45'
+    createdAt: '[2024.01.15]'
   }
 ];
 
@@ -91,13 +91,11 @@ const DiariesDetail: React.FC = () => {
       const newRetrospect: RetrospectData = {
         id: Date.now().toString(),
         content: retrospectInput.trim(),
-        createdAt: new Date().toLocaleString('ko-KR', {
+        createdAt: `[${new Date().toLocaleDateString('ko-KR', {
           year: 'numeric',
           month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit'
-        }).replace(/\. /g, '.').replace(/\./g, '.').slice(0, -1)
+          day: '2-digit'
+        }).replace(/\. /g, '.').replace(/\.$/, '')}]`
       };
       setRetrospects([newRetrospect, ...retrospects]);
       setRetrospectInput('');
@@ -196,7 +194,7 @@ const DiariesDetail: React.FC = () => {
           onClick={handleRetrospectSubmit}
           className={styles.retrospectInputButton}
         >
-          등록
+          입력
         </Button>
       </div>
 

@@ -142,32 +142,24 @@
   width: 80px;
 }
 
-/* Retrospect Input 영역 - 1168 * 85 */
+/* Retrospect Input 영역 - 1168 * 96 */
 .retrospectInput {
   display: flex;
   align-items: center;
   width: 1168px;
-  height: 85px;
   background-color: var(--color-surface-primary);
-  border: 1px solid var(--color-border-secondary);
   margin-bottom: 16px;
-  padding: 16px 24px;
-  gap: 12px;
+  gap: 16px;
 }
 
 .retrospectInputField {
   flex: 1;
-  min-width: 0; /* Input 컴포넌트의 고정 width 무시 */
-}
-
-/* Input 컴포넌트 내부 wrapper의 고정 width 제거 */
-.retrospectInputField :global(.inputWrapper) {
-  width: 100% !important;
 }
 
 .retrospectInputButton {
-  width: 100px; /* medium 사이즈에 맞게 조정 */
-  flex-shrink: 0; /* 버튼 크기 고정 */
+  width: 51px;
+  height: 48px;
+  flex-shrink: 0;
 }
 
 /* Retrospect List 영역 - 1168 * auto */
@@ -176,15 +168,13 @@
   flex-direction: column;
   width: 1168px;
   min-height: 72px;
-  background-color: var(--color-surface-tertiary);
-  border: 1px solid var(--color-border-primary);
 }
 
 .retrospectItem {
   display: flex;
   align-items: flex-start;
   width: 100%;
-  padding: 16px 24px;
+  padding: 20px 0;
   gap: 12px;
   border-bottom: 1px solid var(--color-border-secondary);
 }
@@ -194,17 +184,20 @@
 }
 
 .retrospectContent {
-  flex: 1;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .retrospectText {
   font-family: var(--font-family-korean-primary);
-  font-size: var(--typography-body2-korean-desktop-font-size);
-  line-height: var(--typography-body2-korean-desktop-line-height);
-  font-weight: var(--typography-body2-korean-desktop-font-weight);
-  letter-spacing: var(--typography-body2-korean-desktop-letter-spacing);
+  font-size: var(--typography-body1-korean-desktop-font-size);
+  line-height: var(--typography-body1-korean-desktop-line-height);
+  font-weight: var(--typography-body1-korean-desktop-font-weight);
+  letter-spacing: var(--typography-body1-korean-desktop-letter-spacing);
   color: var(--color-text-primary);
-  margin: 0 0 8px 0;
+  margin: 0;
+
 }
 
 .retrospectDate {
@@ -215,4 +208,6 @@
   letter-spacing: var(--typography-caption1-korean-desktop-letter-spacing);
   color: var(--color-text-tertiary);
   margin: 0;
+  flex-shrink: 0;
+  margin-left: 12px;
 }
