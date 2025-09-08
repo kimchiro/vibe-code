@@ -4,15 +4,37 @@
   height: 560px;
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--color-border-primary); /* 와이어프레임 시각화를 위한 테두리 */
+  background-color: var(--color-surface-primary);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 /* Header 영역: full * 24 */
 .header {
   width: 100%;
   height: 24px;
-  background-color: var(--color-surface-secondary); /* 와이어프레임 시각화를 위한 배경색 */
-  border: 1px solid var(--color-border-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerTitle {
+  font-size: var(--typography-heading1-korean-mobile-font-size);
+  line-height: var(--typography-heading1-korean-mobile-line-height);
+  font-weight: var(--typography-heading1-korean-mobile-font-weight);
+  letter-spacing: var(--typography-heading1-korean-mobile-letter-spacing);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .headerTitle {
+    font-size: var(--typography-heading1-korean-desktop-font-size);
+    line-height: var(--typography-heading1-korean-desktop-line-height);
+    font-weight: var(--typography-heading1-korean-desktop-font-weight);
+    letter-spacing: var(--typography-heading1-korean-desktop-letter-spacing);
+  }
 }
 
 /* Gap 영역: full * 40 */
@@ -24,18 +46,86 @@
 /* Emotion Box 영역: full * 64 */
 .emotionBox {
   width: 100%;
-  height: 64px;
-  background-color: var(--color-surface-tertiary); /* 와이어프레임 시각화를 위한 배경색 */
-  border: 1px solid var(--color-border-secondary);
+  min-height: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  background-color: var(--color-surface-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--color-border-primary);
+}
+
+.emotionQuestion {
+  font-size: var(--typography-body1-korean-mobile-font-size);
+  line-height: var(--typography-body1-korean-mobile-line-height);
+  font-weight: var(--typography-body1-korean-mobile-font-weight);
+  letter-spacing: var(--typography-body1-korean-mobile-letter-spacing);
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .emotionQuestion {
+    font-size: var(--typography-body1-korean-desktop-font-size);
+    line-height: var(--typography-body1-korean-desktop-line-height);
+    font-weight: var(--typography-body1-korean-desktop-font-weight);
+    letter-spacing: var(--typography-body1-korean-desktop-letter-spacing);
+  }
+}
+
+.emotionOptions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.emotionOption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.emotionOption:hover {
+  background-color: var(--color-surface-tertiary);
+}
+
+.emotionRadio {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-interactive-primary);
+}
+
+.emotionLabel {
+  font-size: var(--typography-label2-korean-mobile-font-size);
+  line-height: var(--typography-label2-korean-mobile-line-height);
+  font-weight: var(--typography-label2-korean-mobile-font-weight);
+  letter-spacing: var(--typography-label2-korean-mobile-letter-spacing);
+  color: var(--color-text-primary);
+}
+
+@media (min-width: 768px) {
+  .emotionLabel {
+    font-size: var(--typography-label2-korean-desktop-font-size);
+    line-height: var(--typography-label2-korean-desktop-line-height);
+    font-weight: var(--typography-label2-korean-desktop-font-weight);
+    letter-spacing: var(--typography-label2-korean-desktop-letter-spacing);
+  }
 }
 
 /* Input Title 영역: full * 76 */
 .inputTitle {
   width: 100%;
-  height: 76px;
-  background-color: var(--color-surface-primary); /* 와이어프레임 시각화를 위한 배경색 */
-  border: 1px solid var(--color-border-secondary);
+  min-height: 76px;
+  display: flex;
+  align-items: center;
 }
+
 
 /* Gap Small 영역: full * 24 */
 .gapSmall {
@@ -46,15 +136,53 @@
 /* Input Content 영역: full * 156 */
 .inputContent {
   width: 100%;
-  height: 156px;
-  background-color: var(--color-background-primary); /* 와이어프레임 시각화를 위한 배경색 */
-  border: 1px solid var(--color-border-secondary);
+  min-height: 156px;
+  display: flex;
+  align-items: stretch;
+}
+
+.contentTextarea {
+  width: 100%;
+  min-height: 156px;
+  padding: 12px 16px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 6px;
+  background-color: var(--color-surface-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-korean-primary);
+  font-size: var(--typography-body1-korean-mobile-font-size);
+  line-height: var(--typography-body1-korean-mobile-line-height);
+  font-weight: var(--typography-body1-korean-mobile-font-weight);
+  letter-spacing: var(--typography-body1-korean-mobile-letter-spacing);
+  resize: vertical;
+  transition: border-color 0.2s ease;
+}
+
+.contentTextarea:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+}
+
+.contentTextarea::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+@media (min-width: 768px) {
+  .contentTextarea {
+    font-size: var(--typography-body1-korean-desktop-font-size);
+    line-height: var(--typography-body1-korean-desktop-line-height);
+    font-weight: var(--typography-body1-korean-desktop-font-weight);
+    letter-spacing: var(--typography-body1-korean-desktop-letter-spacing);
+  }
 }
 
 /* Footer 영역: full * 48 */
 .footer {
   width: 100%;
   height: 48px;
-  background-color: var(--color-surface-secondary); /* 와이어프레임 시각화를 위한 배경색 */
-  border: 1px solid var(--color-border-secondary);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
 }
+

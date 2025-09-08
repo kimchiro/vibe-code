@@ -10,7 +10,7 @@
 
 ==============================================
 
-조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: oq3a7d0f)
+조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: uv5zwt1p)
 조건-피그마) 구현될 컴포넌트 노드ID(wrapper(+ header 제목 포함) 영역): 3:837
 조건-피그마) 구현될 컴포넌트 노드ID(emotion-box 영역): 3:840
 조건-피그마) 구현될 컴포넌트 노드ID(input-title 영역): 3:849
