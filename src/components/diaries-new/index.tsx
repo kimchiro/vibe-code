@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import styles from './styles.module.css';
 import { Input } from '@/commons/components/input';
@@ -61,6 +63,7 @@ const DiariesNew: React.FC = () => {
       <div className={styles.gap}></div>
       
       {/* Input Title 영역 */}
+      <div>제목</div>
       <div className={styles.inputTitle}>
         <Input
           variant="primary"
@@ -77,6 +80,7 @@ const DiariesNew: React.FC = () => {
       <div className={styles.gapSmall}></div>
       
       {/* Input Content 영역 */}
+      <div>내용</div>
       <div className={styles.inputContent}>
         <textarea
           placeholder="내용을 입력하세요"
@@ -106,6 +110,7 @@ const DiariesNew: React.FC = () => {
           size="medium"
           onClick={handleSubmit}
           style={{ width: '100px' }}
+          disabled={!selectedEmotion || !title || !content}
         >
           등록하기
         </Button>

@@ -48,6 +48,11 @@
   object-fit: cover;
 }
 
+/* Header */
+.headerTitle {
+  cursor: pointer;
+}
+
 /* Navigation */
 .navigation {
   width: 1168px;
@@ -72,20 +77,18 @@
   letter-spacing: var(--typography-heading1-korean-desktop-letter-spacing);
   cursor: pointer;
   transition: all 0.2s ease;
-}
-
-.diaryNav {
-  color: var(--color-text-primary); /* black */
-  border-bottom: 2px solid var(--color-text-primary);
+  color: var(--color-neutral-600); /* gray60 - 기본 상태 */
   padding-bottom: 4px;
 }
 
-.photoNav {
-  color: var(--color-neutral-600); /* gray60 */
+.navText:hover {
+  color: var(--color-text-primary);
 }
 
-.photoNav:hover {
-  color: var(--color-text-primary);
+/* 액티브 상태 스타일 */
+.navTextActive {
+  color: var(--color-text-primary) !important; /* black */
+  border-bottom: 2px solid var(--color-text-primary);
 }
 
 /* Main Content */

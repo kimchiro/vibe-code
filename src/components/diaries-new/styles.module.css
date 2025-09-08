@@ -4,6 +4,7 @@
   height: 560px;
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
   background-color: var(--color-surface-primary);
   border-radius: 8px;
   padding: 24px;
@@ -14,9 +15,9 @@
 .header {
   width: 100%;
   height: 24px;
+  padding: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
+
 }
 
 .headerTitle {
@@ -26,6 +27,7 @@
   letter-spacing: var(--typography-heading1-korean-mobile-letter-spacing);
   color: var(--color-text-primary);
   margin: 0;
+
 }
 
 @media (min-width: 768px) {
@@ -50,10 +52,9 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 16px;
-  background-color: var(--color-surface-secondary);
+
   border-radius: 8px;
-  border: 1px solid var(--color-border-primary);
+
 }
 
 .emotionQuestion {
@@ -62,7 +63,7 @@
   font-weight: var(--typography-body1-korean-mobile-font-weight);
   letter-spacing: var(--typography-body1-korean-mobile-letter-spacing);
   color: var(--color-text-primary);
-  text-align: center;
+  text-align: left;
 }
 
 @media (min-width: 768px) {
@@ -76,29 +77,28 @@
 
 .emotionOptions {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 16px;
   flex-wrap: wrap;
 }
 
 .emotionOption {
   display: flex;
-  align-items: center;
+  justify-content: flex-start;
   gap: 8px;
   cursor: pointer;
-  padding: 8px 12px;
   border-radius: 6px;
   transition: background-color 0.2s ease;
 }
 
 .emotionOption:hover {
-  background-color: var(--color-surface-tertiary);
+  background-color: var(--color-surface-secondary);
 }
 
 .emotionRadio {
   width: 16px;
   height: 16px;
-  accent-color: var(--color-interactive-primary);
+  accent-color: var(--color-interactive-secondary);
 }
 
 .emotionLabel {
@@ -106,7 +106,7 @@
   line-height: var(--typography-label2-korean-mobile-line-height);
   font-weight: var(--typography-label2-korean-mobile-font-weight);
   letter-spacing: var(--typography-label2-korean-mobile-letter-spacing);
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
 }
 
 @media (min-width: 768px) {
@@ -121,7 +121,7 @@
 /* Input Title 영역: full * 76 */
 .inputTitle {
   width: 100%;
-  min-height: 76px;
+
   display: flex;
   align-items: center;
 }
@@ -156,6 +156,8 @@
   letter-spacing: var(--typography-body1-korean-mobile-letter-spacing);
   resize: vertical;
   transition: border-color 0.2s ease;
+  resize: none;
+  
 }
 
 .contentTextarea:focus {

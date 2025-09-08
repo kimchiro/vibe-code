@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.85.5",
@@ -21,6 +24,7 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.27.1",
+    "@playwright/test": "^1.55.0",
     "@storybook/addon-essentials": "^8.4.7",
     "@storybook/addon-interactions": "^8.4.7",
     "@storybook/addon-links": "^8.4.7",
