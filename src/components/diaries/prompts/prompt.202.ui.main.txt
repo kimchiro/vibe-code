@@ -10,8 +10,9 @@
 
 ==============================================
 
-조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: k8pcs1a1)
-조건-피그마) 구현될 컴포넌트 노드ID(main 영역): 3:1575
+
+조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: 0egodw8w)
+조건-피그마) 구현될 컴포넌트 노드ID(main 영역): 3:1309
 
 조건-파일경로) 구현될 TSX 파일경로: src/components/diaries/index.tsx
 조건-파일경로) 구현될 CSS 파일경로: src/components/diaries/styles.module.css
@@ -30,11 +31,21 @@
 
 ==============================================
 
-핵심요구사항) styes_cardImage의 border-radius를 16px 16px 16px 16px 로 통일할 것.
+핵심요구사항) cardEmotion의 스타일은 EMOTION_COLORS를 사용할것.
 
-핵심요구사항) styles_cardContent의 height를 제거할 것.
+핵심요구사항) 타이틀의 폰트스타일을 title01를 적용할것.
+            1. 텍스트가 한줄이 넘어갈경우 ... 으로 간략히 보이게 할것. 
 
-핵심요구사항) styles_diaryCard의 box-shadow 제거할 것.
+핵심요구사항) 현재 적용된 cardImage와 .cardImage img의 css를 변경하지 말것.
+
+핵심요구사항) carditem 우 상단에 위치에 close_outline_light_m.svg를 사용하여 삭제 버튼을 구현할것,
+            우측에 12px 상단의 12px 의 여백을 가진 위치에 구현할것.
+
+핵심요구사항) cardContent의 cardEmotion이 cardDate와 동일하게 상단에 위치할것, cardEmotion이 좌상단에 위치시킬것 cardDate가 우상단에 위치시킬것
+                조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: 0egodw8w)
+                조건-피그마) 구현될 컴포넌트 노드ID(main 영역): 3:1315
+                cardContent를 피그마 디지안과 동일하게 구현할것. 
+
 
 핵심요구사항) 일기카드는 아래의 조건으로 Mock 데이터를 만들어 적용할 것.
             1. 일기카드는 감정과 관련된 내용으로 enum 타입을 활용할 것.

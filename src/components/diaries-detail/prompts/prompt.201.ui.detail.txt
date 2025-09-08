@@ -37,6 +37,7 @@
 
 핵심요구사항)  <span className={styles.emotionText}>{getEmotionLabel(mockDiaryDetail.emotion)} 의 텍스트 사이즈와 , 색상이 피그마 디자인과 다른데 동일하게 구현할것
 
+
 핵심요구사항) styles_titleSection의 border-bottom을 2px solild black 추가할 것.
 
 핵심요구사항) styles_detailFooter는 height를 56px로 설정하고, border-bottom을 1px solid black으로 추가할 것.
@@ -51,6 +52,7 @@
                     - 제목텍스트: 피그마와 동일하게 구현할 것.
                     - 감정아이콘: emotion enum 타입에 지정된 s사이즈 이미지경로(/images) 사용할 것.
                     - 감정텍스트: emotion enum 타입에 지정된 감정텍스트. "행복해요", "슬퍼요" 등 사용할 것.
+                    - 감정텍스트스타일: emotion emotion emotion 지정된 색상을 적용할것 하드코딩 금지.
                     - 작성일텍스트: 피그마와 동일하게 구현할 것.
 
                 2) detail-content

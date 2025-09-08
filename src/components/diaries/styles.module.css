@@ -140,10 +140,14 @@
 .pagination {
   width: 1168px;
   height: 32px;
-  background-color: var(--color-surface-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.paginationComponent {
+  width: auto;
+  /* width만 허용 - 다른 스타일 속성 금지 */
 }
 
 .gap4 {
