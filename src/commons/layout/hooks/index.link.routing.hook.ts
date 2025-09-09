@@ -2,7 +2,7 @@
 
 import { useRouter, usePathname } from 'next/navigation';
 import { useCallback } from 'react';
-import { UrlPath } from '../../constants/url';
+import { UrlPath, generateDynamicUrl } from '../../constants/url';
 
 /**
  * 링크 라우팅 훅
@@ -51,6 +51,15 @@ export function useLinkRouting() {
   }, [navigateTo]);
 
   /**
+   * 일기 상세 페이지로 이동 핸들러
+   * @param diaryId 일기 ID
+   */
+  const handleDiaryDetailClick = useCallback((diaryId: string | number) => {
+    const detailUrl = generateDynamicUrl(UrlPath.DIARY_DETAIL, { id: String(diaryId) });
+    router.push(detailUrl);
+  }, [router]);
+
+  /**
    * 일기보관함이 현재 활성화된 탭인지 확인
    */
   const isDiariesActive = isCurrentPath(UrlPath.DIARIES);
@@ -65,6 +74,7 @@ export function useLinkRouting() {
     handleDiariesClick,
     handlePicturesClick,
     handleLogoClick,
+    handleDiaryDetailClick,
     
     // 액티브 상태
     isDiariesActive,

@@ -111,4 +111,17 @@ test.describe('Layout Link Routing', () => {
     await expect(picturesNav).toBeVisible();
     await expect(picturesNav).toHaveCSS('cursor', 'pointer');
   });
+
+  test('일기 카드 클릭 시 상세 페이지로 이동', async ({ page }) => {
+    // 일기 목록 페이지에서 첫 번째 일기 카드 클릭
+    const firstDiaryCard = page.locator('[data-testid="diary-card-1"]');
+    await expect(firstDiaryCard).toBeVisible();
+    await expect(firstDiaryCard).toHaveCSS('cursor', 'pointer');
+    
+    // 일기 카드 클릭
+    await firstDiaryCard.click();
+    
+    // 일기 상세 페이지로 이동했는지 확인
+    await expect(page).toHaveURL('/diaries/1');
+  });
 });

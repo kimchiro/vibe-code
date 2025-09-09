@@ -7,6 +7,7 @@ import Searchbar from '@/commons/components/searchbar';
 import Button from '@/commons/components/button';
 import Pagination from '@/commons/components/pagination';
 import { Emotion, getEmotionLabel, getEmotionImage, EMOTION_COLORS } from '@/commons/constants/enum';
+import { useLinkRouting } from '@/commons/layout/hooks/index.link.routing.hook';
 
 // 일기 데이터 타입 정의
 interface DiaryData {
@@ -22,6 +23,9 @@ export default function Diaries() {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9; // 한 페이지당 9개 아이템 (4x2 그리드)
+  
+  // 링크 라우팅 훅 사용
+  const { handleDiaryDetailClick } = useLinkRouting();
 
   // Mock 데이터 생성 (피그마 디자인 기반, emotion enum 활용)
   const mockDiaries: DiaryData[] = [
@@ -157,6 +161,11 @@ export default function Diaries() {
     console.log('일기 삭제:', diaryId);
   };
 
+  // 일기 카드 클릭 핸들러 (상세 페이지로 이동)
+  const handleDiaryCardClick = (diaryId: number) => {
+    handleDiaryDetailClick(diaryId);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.gap}></div>
@@ -200,10 +209,18 @@ export default function Diaries() {
       <div className={styles.main}>
         <div className={styles.diaryGrid}>
           {currentDiaries.map((diary) => (
-            <div key={diary.id} className={styles.diaryCard}>
+            <div 
+              key={diary.id} 
+              className={styles.diaryCard}
+              onClick={() => handleDiaryCardClick(diary.id)}
+              data-testid={`diary-card-${diary.id}`}
+            >
               <button 
                 className={styles.deleteButton}
-                onClick={() => handleDeleteDiary(diary.id)}
+                onClick={(e) => {
+                  e.stopPropagation(); // 카드 클릭 이벤트 전파 방지
+                  handleDeleteDiary(diary.id);
+                }}
                 aria-label="일기 삭제"
               >
                 <img src="/icons/close_outline_light_m.svg" alt="삭제" />
