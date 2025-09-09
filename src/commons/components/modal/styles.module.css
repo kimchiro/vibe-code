@@ -119,9 +119,8 @@
   width: 100%;
 }
 
-.singleActionButton {
-  width: 100% !important;
-  flex: 1 !important;
+.buttons.actions-single .confirmButton {
+  width: 100%;
 }
 
 /* Dual Action: 104px 고정 너비 버튼 (피그마 디자인 기준) */
@@ -130,11 +129,10 @@
   justify-content: center;
 }
 
-.dualActionButton {
-  width: 104px !important;
-  min-width: 104px !important;
-  max-width: 104px !important;
-  flex: none !important;
+.buttons.actions-dual .cancelButton,
+.buttons.actions-dual .confirmButton {
+  width: 104px;
+  flex: none;
 }
 
 /* ===== 개별 버튼 스타일 ===== */
@@ -147,15 +145,7 @@
 }
 
 /* ===== Variant별 특별 스타일링 ===== */
-.modal.variant-info {
-  /* Info 모달: 기본 스타일 사용 */
-  border: none;
-}
 
-.modal.variant-danger {
-  /* Danger 모달: 경고를 나타내는 미묘한 스타일링 */
-  border: none;
-}
 
 .modal.variant-danger.theme-light .title {
   color: var(--color-gray-black); /* Figma 디자인에서는 검은색 유지 */

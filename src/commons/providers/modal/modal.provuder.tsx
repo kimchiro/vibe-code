@@ -54,25 +54,27 @@ const ModalPortal: React.FC<ModalPortalProps> = ({
   const modalRoot = document.getElementById('modal-root') || document.body;
 
   return createPortal(
-    <div
-      className="fixed inset-0 flex items-center justify-center"
-      style={{ zIndex }}
-      onClick={onBackdropClick}
-    >
-      {/* 백드롭 */}
+    <>
+      {/* 백드롭 - 현재 모달의 기본 z-index */}
       <div 
-        className="absolute inset-0 bg-black bg-opacity-50"
+        className="fixed inset-0 bg-black bg-opacity-50"
+        style={{ zIndex }}
         onClick={onBackdropClick}
       />
       
-      {/* 모달 콘텐츠 */}
+      {/* 모달 콘텐츠 - 백드롭보다 높은 z-index */}
       <div
-        className="relative z-10"
-        onClick={(e) => e.stopPropagation()}
+        className="fixed inset-0 flex items-center justify-center pointer-events-none"
+        style={{ zIndex: zIndex + 1 }}
       >
-        {children}
+        <div
+          className="pointer-events-auto"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {children}
+        </div>
       </div>
-    </div>,
+    </>,
     modalRoot
   );
 };
@@ -156,7 +158,7 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
       {modals.map((modal, index) => (
         <ModalPortal
           key={modal.id}
-          zIndex={1000 + index * 10} // 중첩 모달을 위한 z-index 증가
+          zIndex={1000 + index * 10} // 중첩 모달을 위한 z-index 증가 (백드롭: 1000, 1010, 1020... / 콘텐츠: 1001, 1011, 1021...)
           onBackdropClick={() => closeModal(modal.id)}
         >
           {modal.content}

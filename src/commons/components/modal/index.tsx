@@ -127,10 +127,10 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             <Button
               variant="secondary"
               size="medium"
-              theme="light"
+              theme={theme}
               disabled={disabled}
               onClick={onCancel}
-              className={cn(styles.cancelButton, actions === 'dual' && styles.dualActionButton)}
+              className={styles.cancelButton}
               aria-label={`${finalCancelText} 버튼`}
             >
               {finalCancelText}
@@ -139,10 +139,10 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           <Button
             variant="primary"
             size="medium"
-            theme="light"
+            theme={theme}
             disabled={disabled}
             onClick={onConfirm}
-            className={cn(styles.confirmButton, actions === 'dual' ? styles.dualActionButton : styles.singleActionButton)}
+            className={styles.confirmButton}
             aria-label={`${finalConfirmText} 버튼`}
             data-testid="modal-confirm-button"
           >
