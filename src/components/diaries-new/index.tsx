@@ -5,19 +5,23 @@ import styles from './styles.module.css';
 import { Input } from '@/commons/components/input';
 import { Button } from '@/commons/components/button';
 import { Emotion, EMOTION_LABELS, getAllEmotions } from '@/commons/constants/enum';
+import { useModal } from '@/commons/providers/modal/modal.provuder';
 
 const DiariesNew: React.FC = () => {
   const [selectedEmotion, setSelectedEmotion] = useState<Emotion | null>(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  
+  // 모달 훅 사용
+  const { closeAllModals } = useModal();
 
   const handleEmotionChange = (emotion: Emotion) => {
     setSelectedEmotion(emotion);
   };
 
   const handleClose = () => {
-    // 닫기 로직
-    console.log('닫기 버튼 클릭');
+    // 모달 닫기
+    closeAllModals();
   };
 
   const handleSubmit = () => {
@@ -27,6 +31,9 @@ const DiariesNew: React.FC = () => {
       title,
       content
     });
+    
+    // 등록 후 모달 닫기
+    closeAllModals();
   };
 
   return (

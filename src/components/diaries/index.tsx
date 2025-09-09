@@ -8,6 +8,7 @@ import Button from '@/commons/components/button';
 import Pagination from '@/commons/components/pagination';
 import { Emotion, getEmotionLabel, getEmotionImage, EMOTION_COLORS } from '@/commons/constants/enum';
 import { useLinkRouting } from '@/commons/layout/hooks/index.link.routing.hook';
+import { useLinkModal } from './hooks/index.link.modal.hook';
 
 // 일기 데이터 타입 정의
 interface DiaryData {
@@ -26,6 +27,9 @@ export default function Diaries() {
   
   // 링크 라우팅 훅 사용
   const { handleDiaryDetailClick } = useLinkRouting();
+  
+  // 모달 링크 훅 사용
+  const { handleWriteModalOpen } = useLinkModal();
 
   // Mock 데이터 생성 (피그마 디자인 기반, emotion enum 활용)
   const mockDiaries: DiaryData[] = [
@@ -151,8 +155,7 @@ export default function Diaries() {
 
   // 일기쓰기 버튼 클릭 핸들러
   const handleWriteClick = () => {
-    // TODO: 일기 작성 페이지로 이동
-    console.log('일기쓰기 클릭');
+    handleWriteModalOpen();
   };
 
   // 일기 삭제 핸들러
