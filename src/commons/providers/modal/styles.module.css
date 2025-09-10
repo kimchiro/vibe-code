@@ -1,0 +1,96 @@
+/* ===== Modal Provider Styles ===== */
+
+/* ===== 모달 포털 백드롭 기본 스타일 ===== */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* ===== 모달 컨테이너 ===== */
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* ===== 모달 콘텐츠 래퍼 ===== */
+.modalContent {
+  pointer-events: auto;
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+/* ===== 모달 애니메이션 ===== */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ===== 중첩 모달을 위한 백드롭 스타일 ===== */
+.stackedBackdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* ===== 바디 스크롤 제거 클래스 ===== */
+.noScroll {
+  overflow: hidden !important;
+}
+
+/* ===== 모달 포털 루트 ===== */
+.modalRoot {
+  position: relative;
+  z-index: 1000;
+}
+
+/* ===== 중첩 레벨별 z-index 조정 ===== */
+.level0 { z-index: 1000; }
+.level1 { z-index: 1010; }
+.level2 { z-index: 1020; }
+.level3 { z-index: 1030; }
+.level4 { z-index: 1040; }
+.level5 { z-index: 1050; }
+
+/* ===== 반응형 모달 ===== */
+@media (max-width: 768px) {
+  .modalContainer {
+    padding: 16px;
+  }
+  
+  .modalContent {
+    width: 100%;
+    max-width: calc(100vw - 32px);
+  }
+}
+
+/* ===== 접근성을 위한 포커스 스타일 ===== */
+.modalContent:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* ===== 다크 테마 지원 ===== */
+@media (prefers-color-scheme: dark) {
+  .backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .stackedBackdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}

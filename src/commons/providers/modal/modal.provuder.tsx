@@ -2,24 +2,55 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
+import styles from './styles.module.css';
 
-// 모달 타입 정의
-interface Modal {
+// 클래스명 조합 헬퍼 함수
+const cn = (...classes: (string | Record<string, boolean> | undefined | null | false)[]): string => {
+  return classes
+    .filter(Boolean)
+    .map((cls) => {
+      if (typeof cls === 'string') return cls;
+      if (typeof cls === 'object' && cls !== null) {
+        return Object.entries(cls)
+          .filter(([, condition]) => condition)
+          .map(([className]) => className)
+          .join(' ');
+      }
+      return '';
+    })
+    .join(' ')
+    .trim();
+};
+
+// Modal Props 타입 정의
+export interface ModalProps {
   id: string;
   content: ReactNode;
   onClose?: () => void;
 }
 
-// 모달 컨텍스트 타입 정의
-interface ModalContextType {
-  modals: Modal[];
-  openModal: (modal: Omit<Modal, 'id'>) => string;
+// Modal Context Props 타입 정의
+export interface ModalContextProps {
+  modals: ModalProps[];
+  openModal: (modal: Omit<ModalProps, 'id'>) => string;
   closeModal: (id: string) => void;
   closeAllModals: () => void;
 }
 
+// Modal Portal Props 타입 정의
+export interface ModalPortalProps {
+  children: ReactNode;
+  onBackdropClick?: () => void;
+  zIndex: number;
+}
+
+// Modal Provider Props 타입 정의
+export interface ModalProviderProps {
+  children: ReactNode;
+}
+
 // 모달 컨텍스트 생성
-const ModalContext = createContext<ModalContextType | undefined>(undefined);
+const ModalContext = createContext<ModalContextProps | undefined>(undefined);
 
 // 모달 훅
 export const useModal = () => {
@@ -31,11 +62,6 @@ export const useModal = () => {
 };
 
 // 모달 포털 컴포넌트
-interface ModalPortalProps {
-  children: ReactNode;
-  onBackdropClick?: () => void;
-  zIndex: number;
-}
 
 const ModalPortal: React.FC<ModalPortalProps> = ({ 
   children, 
@@ -53,23 +79,32 @@ const ModalPortal: React.FC<ModalPortalProps> = ({
 
   const modalRoot = document.getElementById('modal-root') || document.body;
 
+  // 중첩 레벨에 따른 백드롭 스타일 결정
+  const isStacked = zIndex > 1000;
+  const backdropClass = isStacked ? 
+    `${styles.backdrop} ${styles.stackedBackdrop}` : 
+    styles.backdrop;
+
   return createPortal(
     <>
-      {/* 백드롭 - 현재 모달의 기본 z-index */}
+      {/* 백드롭 - 중첩 모달을 위한 각각의 백드롭 */}
       <div 
-        className="fixed inset-0 bg-black bg-opacity-50"
+        className={backdropClass}
         style={{ zIndex }}
         onClick={onBackdropClick}
       />
       
       {/* 모달 콘텐츠 - 백드롭보다 높은 z-index */}
       <div
-        className="fixed inset-0 flex items-center justify-center pointer-events-none"
+        className={styles.modalContainer}
         style={{ zIndex: zIndex + 1 }}
       >
         <div
-          className="pointer-events-auto"
+          className={styles.modalContent}
           onClick={(e) => e.stopPropagation()}
+          tabIndex={-1}
+          role="dialog"
+          aria-modal="true"
         >
           {children}
         </div>
@@ -80,30 +115,35 @@ const ModalPortal: React.FC<ModalPortalProps> = ({
 };
 
 // 모달 프로바이더 컴포넌트
-interface ModalProviderProps {
-  children: ReactNode;
-}
 
 export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
-  const [modals, setModals] = useState<Modal[]>([]);
+  const [modals, setModals] = useState<ModalProps[]>([]);
 
-  // 모달이 열려있을 때 body 스크롤 제어
+  // 모달이 열려있을 때 body 스크롤 제어 (1개라도 열려있으면 스크롤 제거)
   useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    
     if (modals.length > 0) {
+      // 모달이 1개라도 열려있으면 body 스크롤 제거
       document.body.style.overflow = 'hidden';
+      document.body.classList.add(styles.noScroll);
     } else {
-      document.body.style.overflow = 'unset';
+      // 모든 모달이 닫히면 원래 스크롤 상태로 복원
+      document.body.style.overflow = originalOverflow || 'unset';
+      document.body.classList.remove(styles.noScroll);
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
+      // 컴포넌트 언마운트 시 원래 상태로 복원
+      document.body.style.overflow = originalOverflow || 'unset';
+      document.body.classList.remove(styles.noScroll);
     };
   }, [modals.length]);
 
   // 모달 열기
-  const openModal = (modal: Omit<Modal, 'id'>): string => {
+  const openModal = (modal: Omit<ModalProps, 'id'>): string => {
     const id = `modal-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-    const newModal: Modal = { ...modal, id };
+    const newModal: ModalProps = { ...modal, id };
     
     setModals(prev => [...prev, newModal]);
     return id;
@@ -143,7 +183,7 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     return () => document.removeEventListener('keydown', handleEscKey);
   }, [modals]);
 
-  const contextValue: ModalContextType = {
+  const contextValue: ModalContextProps = {
     modals,
     openModal,
     closeModal,
@@ -167,5 +207,9 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     </ModalContext.Provider>
   );
 };
+
+// displayName 설정
+ModalProvider.displayName = 'ModalProvider';
+ModalPortal.displayName = 'ModalPortal';
 
 export default ModalProvider;
