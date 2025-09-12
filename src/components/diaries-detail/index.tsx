@@ -6,15 +6,7 @@ import styles from './styles.module.css';
 import { Button } from '@/commons/components/button';
 import { Input } from '@/commons/components/input';
 import { Emotion, getEmotionLabel, getEmotionImage, getEmotionColor } from '@/commons/constants/enum';
-
-// Mock 데이터 인터페이스
-interface DiaryDetailData {
-  id: string;
-  title: string;
-  emotion: Emotion;
-  content: string;
-  createdAt: string;
-}
+import { useDiaryBinding } from './hooks/index.binding.hook';
 
 // 회고 데이터 인터페이스
 interface RetrospectData {
@@ -22,36 +14,6 @@ interface RetrospectData {
   content: string;
   createdAt: string;
 }
-
-// Mock 데이터 - 다양한 감정 타입 활용
-const mockDiaryDetails: DiaryDetailData[] = [
-  {
-    id: '1',
-    title: '오늘은 정말 행복한 하루였어요!',
-    emotion: Emotion.HAPPY,
-    content: '친구들과 함께 맛있는 음식을 먹고, 영화도 보고, 정말 즐거운 시간을 보냈습니다. 이런 날이 더 많았으면 좋겠어요. 감사한 마음으로 하루를 마무리합니다.',
-    createdAt: '2024.01.15'
-  },
-  {
-    id: '2',
-    title: '힘든 하루였지만 버텨냈어요',
-    emotion: Emotion.SAD,
-    content: '오늘은 정말 힘든 일이 많았습니다. 하지만 이런 날도 있는 거겠죠. 내일은 더 좋은 날이 되기를 바랍니다.',
-    createdAt: '2024.01.14'
-  },
-  {
-    id: '3',
-    title: '정말 화가 나는 일이 있었어요',
-    emotion: Emotion.ANGRY,
-    content: '오늘 직장에서 정말 이해할 수 없는 일이 일어났습니다. 화가 나지만 차분히 해결해보려고 합니다.',
-    createdAt: '2024.01.13'
-  }
-];
-
-// 현재 표시할 Mock 데이터 (다양한 감정 테스트를 위해 변경 가능)
-const mockDiaryDetail = mockDiaryDetails[0]; // HAPPY: 빨간색
-// const mockDiaryDetail = mockDiaryDetails[1]; // SAD: 파란색  
-// const mockDiaryDetail = mockDiaryDetails[2]; // ANGRY: 회색
 
 // Mock 회고 데이터
 const mockRetrospects: RetrospectData[] = [
@@ -68,12 +30,17 @@ const mockRetrospects: RetrospectData[] = [
 ];
 
 const DiariesDetail: React.FC = () => {
+  // 실제 데이터 바인딩 훅 사용
+  const { diary, isLoading, error } = useDiaryBinding();
+  
   const [retrospectInput, setRetrospectInput] = useState('');
   const [retrospects, setRetrospects] = useState<RetrospectData[]>(mockRetrospects);
 
   const handleCopyContent = () => {
-    navigator.clipboard.writeText(mockDiaryDetail.content);
-    // TODO: 복사 완료 알림 추가
+    if (diary?.content) {
+      navigator.clipboard.writeText(diary.content);
+      // TODO: 복사 완료 알림 추가
+    }
   };
 
   const handleEdit = () => {
@@ -106,37 +73,66 @@ const DiariesDetail: React.FC = () => {
     setRetrospectInput(e.target.value);
   };
 
+  // 로딩 중일 때
+  if (isLoading) {
+    return (
+      <div className={styles.container} data-testid="diaries-detail-container">
+        <div>로딩 중...</div>
+      </div>
+    );
+  }
+
+  // 에러가 있을 때
+  if (error) {
+    return (
+      <div className={styles.container} data-testid="diaries-detail-container">
+        <div>오류: {error}</div>
+      </div>
+    );
+  }
+
+  // 일기 데이터가 없을 때
+  if (!diary) {
+    return (
+      <div className={styles.container} data-testid="diaries-detail-container">
+        <div>일기를 찾을 수 없습니다.</div>
+      </div>
+    );
+  }
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="diaries-detail-container">
       {/* Detail Title 영역 */}
       <div className={styles.detailTitle}>
         <div className={styles.titleSection}>
           <div className={styles.titleHeader}>
             <div className={styles.emotionInfo}>
               <Image
-                src={`/images/emotion-${mockDiaryDetail.emotion.toLowerCase()}-s.png`}
-                alt={getEmotionLabel(mockDiaryDetail.emotion)}
+                src={`/images/emotion-${diary.emotion.toLowerCase()}-s.png`}
+                alt={getEmotionLabel(diary.emotion)}
                 width={24}
                 height={24}
                 className={styles.emotionIcon}
+                data-testid="emotion-icon"
               />
               <span 
                 className={styles.emotionText}
-                style={{ color: getEmotionColor(mockDiaryDetail.emotion) }}
+                style={{ color: getEmotionColor(diary.emotion) }}
+                data-testid="emotion-text"
               >
-                {getEmotionLabel(mockDiaryDetail.emotion)}
+                {getEmotionLabel(diary.emotion)}
               </span>
             </div>
-            <span className={styles.dateText}>{mockDiaryDetail.createdAt}</span>
+            <span className={styles.dateText} data-testid="diary-date">{diary.createdAt}</span>
           </div>
-          <h1 className={styles.titleText}>{mockDiaryDetail.title}</h1>
+          <h1 className={styles.titleText} data-testid="diary-title">{diary.title}</h1>
         </div>
       </div>
 
       {/* Detail Content 영역 */}
       <div className={styles.detailContent}>
         <div className={styles.contentSection}>
-          <p className={styles.contentText}>{mockDiaryDetail.content}</p>
+          <p className={styles.contentText} data-testid="diary-content">{diary.content}</p>
           <button 
             className={styles.copyButton}
             onClick={handleCopyContent}
