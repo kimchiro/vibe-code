@@ -2,6 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { useTheme } from 'next-themes';
+import { Toggle } from '../components/toggle';
 import styles from './styles.module.css';
 import { useLinkRouting } from './hooks/index.link.routing.hook';
 import { useArea } from './hooks/index.area.hook';
@@ -20,6 +22,11 @@ export default function Layout({ children }: LayoutProps) {
   } = useLinkRouting();
 
   const areaVisibility = useArea();
+  const { theme, setTheme } = useTheme();
+
+  const handleThemeToggle = (checked: boolean) => {
+    setTheme(checked ? 'dark' : 'light');
+  };
 
   return (
     <div className={styles.container}>
@@ -35,6 +42,16 @@ export default function Layout({ children }: LayoutProps) {
                 민지의 다이어리
               </h1>
             )}
+            
+            <div className={styles.headerActions}>
+              <Toggle
+                size="small"
+                variant="primary"
+                checked={theme === 'dark'}
+                onChange={handleThemeToggle}
+                data-testid="theme-toggle"
+              />
+            </div>
           </header>
           
           <div className={styles.gap}></div>
