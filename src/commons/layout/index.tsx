@@ -43,15 +43,18 @@ export default function Layout({ children }: LayoutProps) {
               </h1>
             )}
             
-            <div className={styles.headerActions}>
-              <Toggle
-                size="small"
-                variant="primary"
-                checked={theme === 'dark'}
-                onChange={handleThemeToggle}
-                data-testid="theme-toggle"
-              />
-            </div>
+            {areaVisibility.header.darkModeToggle && (
+              <div className={styles.headerActions}>
+                <div data-testid="theme-toggle">
+                  <Toggle
+                    size="small"
+                    variant="primary"
+                    checked={theme === 'dark'}
+                    onChange={handleThemeToggle}
+                  />
+                </div>
+              </div>
+            )}
           </header>
           
           <div className={styles.gap}></div>

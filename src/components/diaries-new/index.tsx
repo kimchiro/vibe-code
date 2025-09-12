@@ -1,36 +1,27 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
 import { Input } from '@/commons/components/input';
 import { Button } from '@/commons/components/button';
 import { Emotion, EMOTION_LABELS, getAllEmotions } from '@/commons/constants/enum';
-import { useModal } from '@/commons/providers/modal/modal.provuder';
 import { useDiaryModalClose } from './hooks/index.link.modal.close.hook';
+import { useDiaryForm } from './hooks/index.form.hook';
 
 const DiariesNew: React.FC = () => {
-  const [selectedEmotion, setSelectedEmotion] = useState<Emotion | null>(null);
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  
-  // 모달 훅 사용
-  const { closeAllModals } = useModal();
+  // 폼 훅 사용
+  const { form, onSubmit, isFormComplete } = useDiaryForm();
   const { handleClose } = useDiaryModalClose();
 
-  const handleEmotionChange = (emotion: Emotion) => {
-    setSelectedEmotion(emotion);
-  };
+  const { register, watch, setValue, formState: { errors } } = form;
+  
+  // 현재 폼 값들 감시
+  const watchedEmotion = watch('emotion');
+  const watchedTitle = watch('title');
+  const watchedContent = watch('content');
 
-  const handleSubmit = () => {
-    // 등록하기 로직
-    console.log('등록하기 버튼 클릭', {
-      emotion: selectedEmotion,
-      title,
-      content
-    });
-    
-    // 등록 후 모달 닫기
-    closeAllModals();
+  const handleEmotionChange = (emotion: Emotion) => {
+    setValue('emotion', emotion);
   };
 
   return (
@@ -53,7 +44,7 @@ const DiariesNew: React.FC = () => {
                 type="radio"
                 name="emotion"
                 value={emotion}
-                checked={selectedEmotion === emotion}
+                checked={watchedEmotion === emotion}
                 onChange={() => handleEmotionChange(emotion)}
                 className={styles.emotionRadio}
               />
@@ -74,8 +65,7 @@ const DiariesNew: React.FC = () => {
           theme="light"
           size="medium"
           placeholder="제목을 입력하세요"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          {...register('title')}
           style={{ width: '100%' }}
         />
       </div>
@@ -88,8 +78,7 @@ const DiariesNew: React.FC = () => {
       <div className={styles.inputContent}>
         <textarea
           placeholder="내용을 입력하세요"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
+          {...register('content')}
           className={styles.contentTextarea}
         />
       </div>
@@ -113,9 +102,9 @@ const DiariesNew: React.FC = () => {
           variant="primary"
           theme="light"
           size="medium"
-          onClick={handleSubmit}
+          onClick={onSubmit}
           style={{ width: '100px' }}
-          disabled={!selectedEmotion || !title || !content}
+          disabled={!isFormComplete}
         >
           등록하기
         </Button>

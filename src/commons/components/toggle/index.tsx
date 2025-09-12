@@ -29,6 +29,7 @@ export interface ToggleProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   onChange?: (checked: boolean) => void;
   label?: string;
   description?: string;
+  'data-testid'?: string;
 }
 
 // Toggle 컴포넌트
@@ -45,6 +46,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
       description,
       className,
       id,
+      'data-testid': dataTestId,
       ...props
     },
     ref
@@ -65,6 +67,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
       },
       className
     );
+
 
     // 변경 핸들러
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -92,6 +95,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
           tabIndex={disabled ? -1 : 0}
           onKeyDown={handleKeyDown}
           onClick={() => !disabled && onChange?.(!checked)}
+          data-testid={dataTestId}
         >
           <input
             ref={ref}

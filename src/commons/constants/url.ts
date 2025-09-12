@@ -63,24 +63,24 @@ const UI_TEMPLATES = {
     footer: false
   } as UIVisibility,
   
-  // 일반 페이지용 - 기본 UI 표시 (다크모드 토글 제외)
+  // 일반 페이지용 - 기본 UI 표시 (다크모드 토글 포함)
   public: {
     header: {
       visible: true,
       logo: true,
-      darkModeToggle: false
+      darkModeToggle: true
     },
     banner: true,
     navigation: true,
     footer: true
   } as UIVisibility,
   
-  // 상세 페이지용 - 헤더와 푸터만 표시
+  // 상세 페이지용 - 헤더와 푸터만 표시 (다크모드 토글 포함)
   detail: {
     header: {
       visible: true,
       logo: true,
-      darkModeToggle: false
+      darkModeToggle: true
     },
     banner: false,
     navigation: false,
