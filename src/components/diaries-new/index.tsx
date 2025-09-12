@@ -6,6 +6,7 @@ import { Input } from '@/commons/components/input';
 import { Button } from '@/commons/components/button';
 import { Emotion, EMOTION_LABELS, getAllEmotions } from '@/commons/constants/enum';
 import { useModal } from '@/commons/providers/modal/modal.provuder';
+import { useDiaryModalClose } from './hooks/index.link.modal.close.hook';
 
 const DiariesNew: React.FC = () => {
   const [selectedEmotion, setSelectedEmotion] = useState<Emotion | null>(null);
@@ -14,14 +15,10 @@ const DiariesNew: React.FC = () => {
   
   // 모달 훅 사용
   const { closeAllModals } = useModal();
+  const { handleClose } = useDiaryModalClose();
 
   const handleEmotionChange = (emotion: Emotion) => {
     setSelectedEmotion(emotion);
-  };
-
-  const handleClose = () => {
-    // 모달 닫기
-    closeAllModals();
   };
 
   const handleSubmit = () => {
@@ -37,7 +34,7 @@ const DiariesNew: React.FC = () => {
   };
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} data-testid="diary-new-modal">
       {/* Header 영역 */}
       <div className={styles.header}>
         <h1 className={styles.headerTitle}>일기쓰기</h1>
@@ -108,6 +105,7 @@ const DiariesNew: React.FC = () => {
           size="medium"
           onClick={handleClose}
           style={{ width: '80px' }}
+          data-testid="diary-close-button"
         >
           닫기
         </Button>

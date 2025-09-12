@@ -16,11 +16,7 @@ export const useLinkModal = () => {
    */
   const handleWriteModalOpen = (): string => {
     const modalId = openModal({
-      content: (
-        <div data-testid="diary-new-modal">
-          <DiariesNew />
-        </div>
-      ),
+      content: <DiariesNew />,
       onClose: () => {
         // 모달이 닫힐 때 추가 로직이 필요한 경우 여기에 구현
         console.log('일기쓰기 모달이 닫혔습니다.');

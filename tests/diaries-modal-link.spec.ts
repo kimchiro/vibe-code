@@ -33,14 +33,15 @@ test.describe('Diaries Modal Link Hook', () => {
     const modal = page.locator('[data-testid="diary-new-modal"]');
     await expect(modal).toBeVisible();
 
-    // 백드롭 클릭 (모달 외부 영역)
-    await page.locator('.fixed.inset-0').first().click({ position: { x: 10, y: 10 } });
+    // 백드롭 클릭 (모달 외부 영역) - 백드롭이 존재하는지 먼저 확인
+    const backdrop = page.locator('[style*="z-index"]').first();
+    await backdrop.click({ position: { x: 10, y: 10 } });
 
     // 모달이 닫혔는지 확인
     await expect(modal).not.toBeVisible();
   });
 
-  test('모달 닫기 버튼 클릭 시 모달이 닫혀야 함', async ({ page }) => {
+  test('모달 닫기 버튼 클릭 시 등록취소 확인 후 모달이 닫혀야 함', async ({ page }) => {
     // 일기쓰기 버튼 클릭하여 모달 열기
     const writeButton = page.locator('button:has-text("일기쓰기")');
     await writeButton.click();
@@ -54,8 +55,17 @@ test.describe('Diaries Modal Link Hook', () => {
     await expect(closeButton).toBeVisible();
     await closeButton.click();
 
+    // 등록취소 확인 모달이 나타나는지 확인
+    const confirmModal = page.locator('[data-testid="cancel-confirmation-modal"]');
+    await expect(confirmModal).toBeVisible();
+
+    // 등록취소 버튼 클릭
+    const confirmButton = page.locator('[data-testid="modal-confirm-button"]');
+    await confirmButton.click();
+
     // 모달이 닫혔는지 확인
     await expect(modal).not.toBeVisible();
+    await expect(confirmModal).not.toBeVisible();
   });
 
   test('ESC 키 누를 시 모달이 닫혀야 함', async ({ page }) => {
