@@ -9,9 +9,10 @@ import Pagination from '@/commons/components/pagination';
 import { Emotion, getEmotionLabel, getEmotionImage, EMOTION_COLORS } from '@/commons/constants/enum';
 import { useLinkRouting } from '@/commons/layout/hooks/index.link.routing.hook';
 import { useLinkModal } from './hooks/index.link.modal.hook';
+import { useDataBinding } from './hooks/index.binding.hook';
 
-// 일기 데이터 타입 정의
-interface DiaryData {
+// 일기 데이터 타입 정의 (기존 구조 유지를 위한 변환용)
+interface DiaryDisplayData {
   id: number;
   date: string;
   content: string;
@@ -24,107 +25,31 @@ export default function Diaries() {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9; // 한 페이지당 9개 아이템 (4x2 그리드)
-  
+
   // 링크 라우팅 훅 사용
   const { handleDiaryDetailClick } = useLinkRouting();
-  
+
   // 모달 링크 훅 사용
   const { handleWriteModalOpen } = useLinkModal();
 
-  // Mock 데이터 생성 (피그마 디자인 기반, emotion enum 활용)
-  const mockDiaries: DiaryData[] = [
-    {
-      id: 1,
-      date: '2024. 03. 12',
-      content: '타이틀 영역 입니다. 한줄까지만 노출되고 나머지는 말줄임 처리됩니다.',
-      emotion: Emotion.HAPPY,
-      image: '/images/emotion-happy-m.png'
-    },
-    {
-      id: 2,
-      date: '2024. 03. 12',
-      content: '타이틀 영역 입니다.',
-      emotion: Emotion.SAD,
-      image: '/images/emotion-sad-m.png'
-    },
-    {
-      id: 3,
-      date: '2024. 03. 12',
-      content: '타이틀 영역 입니다.',
-      emotion: Emotion.ANGRY,
-      image: '/images/emotion-angry-m.png'
-    },
-    {
-      id: 4,
-      date: '2024. 03. 12',
-      content: '타이틀 영역 입니다.',
-      emotion: Emotion.SURPRISE,
-      image: '/images/emotion-surprise-m.png'
-    },
-    {
-      id: 5,
-      date: '2024. 03. 12',
-      content: '타이틀 영역 입니다.',
-      emotion: Emotion.ETC,
-      image: '/images/emotion-etc-m.png'
-    },
-    {
-      id: 6,
-      date: '2024. 03. 12',
-      content: '타이틀 영역 입니다.',
-      emotion: Emotion.HAPPY,
-      image: '/images/emotion-happy-m.png'
-    },
-    {
-      id: 7,
-      date: '2024. 03. 12',
-      content: '타이틀 영역 입니다.',
-      emotion: Emotion.SAD,
-      image: '/images/emotion-sad-m.png'
-    },
-    {
-      id: 8,
-      date: '2024. 03. 05',
-      content: '타이틀 영역 입니다.',
-      emotion: Emotion.ANGRY,
-      image: '/images/emotion-angry-m.png'
-    },
-    {
-      id: 9,
-      date: '2024. 03. 04',
-      content: '예상치 못한 좋은 소식이 있었어요!',
-      emotion: Emotion.SURPRISE,
-      image: '/images/emotion-surprise-m.png'
-    },
-    {
-      id: 10,
-      date: '2024. 03. 03',
-      content: '평범하지만 의미있는 하루였습니다.',
-      emotion: Emotion.ETC,
-      image: '/images/emotion-etc-m.png'
-    },
-    {
-      id: 11,
-      date: '2024. 03. 02',
-      content: '웃음이 끊이지 않았던 즐거운 날.',
-      emotion: Emotion.HAPPY,
-      image: '/images/emotion-happy-m.png'
-    },
-    {
-      id: 12,
-      date: '2024. 03. 01',
-      content: '마음이 무거웠던 하루였어요.',
-      emotion: Emotion.SAD,
-      image: '/images/emotion-sad-m.png'
-    }
-  ];
+  // 데이터 바인딩 훅 사용
+  const { diaries: rawDiaries, isLoading, error } = useDataBinding();
+
+  // 실제 데이터를 디스플레이 형식으로 변환
+  const diaries: DiaryDisplayData[] = rawDiaries.map((diary) => ({
+    id: diary.id,
+    date: diary.createdAt, // createdAt을 date로 매핑
+    content: diary.title, // title을 content로 매핑 (기존 구조 유지)
+    emotion: diary.emotion,
+    image: getEmotionImage(diary.emotion, "m"), // enum 기반 이미지 경로 생성
+  }));
 
   // 필터 옵션 정의
   const filterOptions = [
-    { value: 'all', label: '전체' },
-    { value: 'recent', label: '최신순' },
-    { value: 'oldest', label: '오래된순' },
-    { value: 'title', label: '제목순' },
+    { value: "all", label: "전체" },
+    { value: "recent", label: "최신순" },
+    { value: "oldest", label: "오래된순" },
+    { value: "title", label: "제목순" },
   ];
 
   // 필터 변경 핸들러
@@ -139,14 +64,14 @@ export default function Diaries() {
 
   // 검색어 클리어 핸들러
   const handleSearchClear = () => {
-    setSearchQuery('');
+    setSearchQuery("");
   };
 
   // 페이지네이션 계산
-  const totalPages = Math.ceil(mockDiaries.length / itemsPerPage);
+  const totalPages = Math.ceil(diaries.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentDiaries = mockDiaries.slice(startIndex, endIndex);
+  const currentDiaries = diaries.slice(startIndex, endIndex);
 
   // 페이지 변경 핸들러
   const handlePageChange = (page: number) => {
@@ -161,7 +86,7 @@ export default function Diaries() {
   // 일기 삭제 핸들러
   const handleDeleteDiary = (diaryId: number) => {
     // TODO: 일기 삭제 로직 구현
-    console.log('일기 삭제:', diaryId);
+    console.log("일기 삭제:", diaryId);
   };
 
   // 일기 카드 클릭 핸들러 (상세 페이지로 이동)
@@ -170,7 +95,7 @@ export default function Diaries() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="diaries-container">
       <div className={styles.gap}></div>
       <div className={styles.search}>
         <div className={styles.searchLeft}>
@@ -212,13 +137,13 @@ export default function Diaries() {
       <div className={styles.main}>
         <div className={styles.diaryGrid}>
           {currentDiaries.map((diary) => (
-            <div 
-              key={diary.id} 
+            <div
+              key={diary.id}
               className={styles.diaryCard}
               onClick={() => handleDiaryCardClick(diary.id)}
               data-testid={`diary-card-${diary.id}`}
             >
-              <button 
+              <button
                 className={styles.deleteButton}
                 onClick={(e) => {
                   e.stopPropagation(); // 카드 클릭 이벤트 전파 방지
@@ -233,7 +158,7 @@ export default function Diaries() {
               </div>
               <div className={styles.cardContent}>
                 <div className={styles.cardHeader}>
-                  <div 
+                  <div
                     className={styles.cardEmotion}
                     style={{ color: EMOTION_COLORS[diary.emotion] }}
                   >
@@ -263,4 +188,3 @@ export default function Diaries() {
     </div>
   );
 }
- 

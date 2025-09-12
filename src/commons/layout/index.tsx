@@ -45,14 +45,13 @@ export default function Layout({ children }: LayoutProps) {
             
             {areaVisibility.header.darkModeToggle && (
               <div className={styles.headerActions}>
-                <div data-testid="theme-toggle">
-                  <Toggle
-                    size="small"
-                    variant="primary"
-                    checked={theme === 'dark'}
-                    onChange={handleThemeToggle}
-                  />
-                </div>
+                <Toggle
+                  size="small"
+                  variant="primary"
+                  checked={theme === 'dark'}
+                  onChange={handleThemeToggle}
+                  data-testid="theme-toggle"
+                />
               </div>
             )}
           </header>

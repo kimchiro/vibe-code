@@ -99,6 +99,8 @@ test.describe('Layout Theme Toggle', () => {
     await expect(themeToggle).not.toHaveAttribute('aria-disabled', 'true');
     
     // 클릭이 정상적으로 작동하는지 확인
+
+    
     await themeToggle.click();
     await expect(page.locator('html')).toHaveClass(/dark/);
   });

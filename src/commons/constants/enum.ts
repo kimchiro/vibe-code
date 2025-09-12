@@ -53,24 +53,24 @@ export const EMOTION_LABELS: Record<Emotion, string> = {
  */
 export const EMOTION_IMAGES: Record<Emotion, EmotionImages> = {
   [Emotion.HAPPY]: {
-    medium: '/icons/emotion-happy-m.svg',
-    small: '/icons/emotion-happy-s.svg'
+    medium: '/images/emotion-happy-m.png',
+    small: '/images/emotion-happy-s.png'
   },
   [Emotion.SAD]: {
-    medium: '/icons/emotion-sad-m.svg',
-    small: '/icons/emotion-sad-s.svg'
+    medium: '/images/emotion-sad-m.png',
+    small: '/images/emotion-sad-s.png'
   },
   [Emotion.ANGRY]: {
-    medium: '/icons/emotion-angry-m.svg',
-    small: '/icons/emotion-angry-s.svg'
+    medium: '/images/emotion-angry-m.png',
+    small: '/images/emotion-angry-s.png'
   },
   [Emotion.SURPRISE]: {
-    medium: '/icons/emotion-surprise-m.svg',
-    small: '/icons/emotion-surprise-s.svg'
+    medium: '/images/emotion-surprise-m.png',
+    small: '/images/emotion-surprise-s.png'
   },
   [Emotion.ETC]: {
-    medium: '/icons/emotion-etc-m.svg',
-    small: '/icons/emotion-etc-s.svg'
+    medium: '/images/emotion-etc-m.png',
+    small: '/images/emotion-etc-s.png'
   }
 } as const;
 

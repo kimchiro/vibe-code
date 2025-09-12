@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useModal } from '@/commons/providers/modal/modal.provuder';
-import DiariesNew from '@/components/diaries-new';
+import { useModal } from "@/commons/providers/modal/modal.provuder";
+import DiariesNew from "@/components/diaries-new";
 
 /**
  * 일기 관련 모달 링크 훅
@@ -19,8 +19,8 @@ export const useLinkModal = () => {
       content: <DiariesNew />,
       onClose: () => {
         // 모달이 닫힐 때 추가 로직이 필요한 경우 여기에 구현
-        console.log('일기쓰기 모달이 닫혔습니다.');
-      }
+        console.log("일기쓰기 모달이 닫혔습니다.");
+      },
     });
 
     return modalId;

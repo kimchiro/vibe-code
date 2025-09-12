@@ -1,11 +1,41 @@
 import { test, expect } from '@playwright/test';
+import { Emotion } from '../src/commons/constants/enum';
+
+// 테스트용 일기 데이터 타입
+interface DiaryData {
+  id: number;
+  title: string;
+  content: string;
+  emotion: Emotion;
+  createdAt: string;
+}
 
 test.describe('DiariesNew 모달 닫기 기능', () => {
   test.beforeEach(async ({ page }) => {
+    // 테스트용 실제 데이터를 로컬스토리지에 설정
+    const testDiaries: DiaryData[] = [
+      {
+        id: 1,
+        title: '행복한 하루',
+        content: '오늘은 정말 행복한 하루였어요!',
+        emotion: Emotion.HAPPY,
+        createdAt: '2024-03-12'
+      }
+    ];
+
     // /diaries 페이지로 이동
     await page.goto('/diaries');
     
+    // 로컬스토리지에 테스트 데이터 설정
+    await page.evaluate((diaries) => {
+      localStorage.setItem('diaries', JSON.stringify(diaries));
+    }, testDiaries);
+    
+    // 페이지 새로고침하여 데이터 로드
+    await page.reload();
+    
     // 페이지 로드 완료 대기 (data-testid 기반)
+    await page.waitForSelector('[data-testid="diaries-container"]', { timeout: 500 });
     await page.waitForSelector('[data-testid="diary-card-1"]', { timeout: 500 });
     
     // 일기쓰기 버튼 클릭하여 모달 열기

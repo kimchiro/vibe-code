@@ -1,11 +1,48 @@
 import { test, expect } from '@playwright/test';
+import { Emotion } from '../src/commons/constants/enum';
+
+// 테스트용 일기 데이터 타입
+interface DiaryData {
+  id: number;
+  title: string;
+  content: string;
+  emotion: Emotion;
+  createdAt: string;
+}
 
 test.describe('Diaries Modal Link Hook', () => {
   test.beforeEach(async ({ page }) => {
+    // 테스트용 실제 데이터를 로컬스토리지에 설정
+    const testDiaries: DiaryData[] = [
+      {
+        id: 1,
+        title: '행복한 하루',
+        content: '오늘은 정말 행복한 하루였어요!',
+        emotion: Emotion.HAPPY,
+        createdAt: '2024-03-12'
+      },
+      {
+        id: 2,
+        title: '슬픈 하루',
+        content: '마음이 무거웠던 하루였습니다.',
+        emotion: Emotion.SAD,
+        createdAt: '2024-03-11'
+      }
+    ];
+
     // /diaries 페이지로 이동
     await page.goto('/diaries');
     
+    // 로컬스토리지에 테스트 데이터 설정
+    await page.evaluate((diaries) => {
+      localStorage.setItem('diaries', JSON.stringify(diaries));
+    }, testDiaries);
+    
+    // 페이지 새로고침하여 데이터 로드
+    await page.reload();
+    
     // 페이지가 완전히 로드될 때까지 대기 (data-testid 기반)
+    await page.waitForSelector('[data-testid="diaries-container"]', { timeout: 500 });
     await page.waitForSelector('[data-testid="diary-card-1"]', { timeout: 500 });
   });
 

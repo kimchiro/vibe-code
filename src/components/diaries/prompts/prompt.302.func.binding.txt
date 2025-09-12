@@ -12,7 +12,7 @@
 조건-파일경로) 참고할 TSX  파일경로: src/components/diaries/index.tsx
 조건-파일경로) 참고할 CSS  파일경로: src/components/diaries/styles.module.css
 조건-파일경로) 구현될 HOOK 파일경로: src/components/diaries/hooks/index.binding.hook.ts
-조건-파일경로) 구현될 TEST 파일경로: src/components/diaries/tests/index.binding.hook.spec.ts
+조건-파일경로) 구현될 TEST 파일경로: tests/diaries-binding-hook.spec.ts
 
 ==============================================
 
