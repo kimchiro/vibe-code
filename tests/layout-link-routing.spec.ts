@@ -95,7 +95,7 @@ test.describe('Layout Link Routing', () => {
     await page.waitForSelector('[data-testid="diaries-container"]', { timeout: 500 });
     
     await expect(diariesNav).toHaveClass(/navTextActive/);
-    await expect(picturesNav).not.toHaveClass(/navTextActive/);
+    await expect(picturesNav).not.toHaveClass(/navㄷTextActive/);
   });
 
   test('네비게이션 요소들이 클릭 가능한 상태인지 확인', async ({ page }) => {
