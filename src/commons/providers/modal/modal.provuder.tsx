@@ -198,7 +198,7 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
       {modals.map((modal, index) => (
         <ModalPortal
           key={modal.id}
-          zIndex={1000 + index * 10} // 중첩 모달을 위한 z-index 증가 (백드롭: 1000, 1010, 1020... / 콘텐츠: 1001, 1011, 1021...)
+          zIndex={1000 + index * 100} // 중첩 모달을 위한 z-index 증가 (백드롭: 1000, 1100, 1200... / 콘텐츠: 1001, 1101, 1201...)
           onBackdropClick={() => closeModal(modal.id)}
         >
           {modal.content}

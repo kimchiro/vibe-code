@@ -3,7 +3,7 @@
   /* Figma 디자인 기준: 480x200px */
   width: 480px;
   height: 200px;
-  background-color: var(--color-gray-white);
+  background-color: var(--color-surface-primary);
   border-radius: 24px;
   padding: 24px;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
@@ -15,24 +15,24 @@
   box-sizing: border-box;
   
   /* 폰트 패밀리 */
-  font-family: var(--font-family-korean);
+  font-family: var(--font-family-korean-primary);
 }
 
 /* ===== 테마 변형 ===== */
 .modal.theme-light {
-  background-color: var(--color-gray-white);
-  color: var(--color-gray-black);
+  background-color: var(--color-surface-primary);
+  color: var(--color-text-primary);
 }
 
 .modal.theme-dark {
-  background-color: var(--color-gray-90);
-  color: var(--color-gray-white);
+  background-color: var(--color-surface-secondary);
+  color: var(--color-text-primary);
 }
 
 /* ===== 사이즈 변형 ===== */
 .modal.size-small {
-  width: 360px;
-  height: 160px;
+  width: 320px;
+  height: 140px;
   padding: 20px;
 }
 
@@ -68,8 +68,8 @@
 /* ===== 제목 스타일 ===== */
 .title {
   /* Figma 디자인: Pretendard Variable Bold 24px */
-  font-family: var(--font-family-korean);
-  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-korean-primary);
+  font-weight: 700;
   font-size: 24px;
   line-height: 24px;
   letter-spacing: -0.24px;
@@ -78,18 +78,18 @@
 }
 
 .title.theme-light {
-  color: var(--color-gray-black);
+  color: var(--color-text-primary);
 }
 
 .title.theme-dark {
-  color: var(--color-gray-white);
+  color: var(--color-text-primary);
 }
 
 /* ===== 설명 스타일 ===== */
 .description {
   /* Figma 디자인: Pretendard Variable Medium 20px */
-  font-family: var(--font-family-korean);
-  font-weight: var(--font-weight-medium);
+  font-family: var(--font-family-korean-primary);
+  font-weight: 500;
   font-size: 20px;
   line-height: 24px;
   letter-spacing: -0.2px;
@@ -98,11 +98,11 @@
 }
 
 .description.theme-light {
-  color: var(--color-gray-80);
+  color: var(--color-text-secondary);
 }
 
 .description.theme-dark {
-  color: var(--color-gray-30);
+  color: var(--color-text-secondary);
 }
 
 /* ===== 버튼 영역 ===== */
@@ -148,11 +148,11 @@
 
 
 .modal.variant-danger.theme-light .title {
-  color: var(--color-gray-black); /* Figma 디자인에서는 검은색 유지 */
+  color: var(--color-text-primary); /* Figma 디자인에서는 검은색 유지 */
 }
 
 .modal.variant-danger.theme-dark .title {
-  color: var(--color-gray-white); /* Dark 테마에서는 흰색 */
+  color: var(--color-text-primary); /* Dark 테마에서는 흰색 */
 }
 
 /* ===== 반응형 디자인 ===== */

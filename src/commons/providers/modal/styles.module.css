@@ -6,7 +6,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
   transition: opacity 0.2s ease-in-out;
 }
 
@@ -43,9 +43,8 @@
 
 /* ===== 중첩 모달을 위한 백드롭 스타일 ===== */
 .stackedBackdrop {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.6);
 }
-
 /* ===== 바디 스크롤 제거 클래스 ===== */
 .noScroll {
   overflow: hidden !important;
@@ -59,11 +58,11 @@
 
 /* ===== 중첩 레벨별 z-index 조정 ===== */
 .level0 { z-index: 1000; }
-.level1 { z-index: 1010; }
-.level2 { z-index: 1020; }
-.level3 { z-index: 1030; }
-.level4 { z-index: 1040; }
-.level5 { z-index: 1050; }
+.level1 { z-index: 1100; }
+.level2 { z-index: 1200; }
+.level3 { z-index: 1300; }
+.level4 { z-index: 1400; }
+.level5 { z-index: 1500; }
 
 /* ===== 반응형 모달 ===== */
 @media (max-width: 768px) {
@@ -79,17 +78,17 @@
 
 /* ===== 접근성을 위한 포커스 스타일 ===== */
 .modalContent:focus {
-  outline: 2px solid #007bff;
+  outline: 2px solid var(--color-border-focus);
   outline-offset: 2px;
 }
 
 /* ===== 다크 테마 지원 ===== */
 @media (prefers-color-scheme: dark) {
   .backdrop {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.6);
   }
   
   .stackedBackdrop {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
   }
 }
