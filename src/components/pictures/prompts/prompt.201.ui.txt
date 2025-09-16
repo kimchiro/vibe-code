@@ -10,7 +10,7 @@
 
 ==============================================
 
-조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: o1uzcerp)
+조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: tp2mim42)
 조건-피그마) 구현될 컴포넌트 노드ID(filter 영역): 3:140
 조건-피그마) 구현될 컴포넌트 노드ID(main 영역): 3:146
 

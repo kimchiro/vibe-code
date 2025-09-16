@@ -1,12 +1,147 @@
+'use client';
+
+import React, { useState } from 'react';
+import SelectBox from '@/commons/components/selectbox';
+import type { SelectOption } from '@/commons/components/selectbox';
+import { useDogImages, useSplashScreens } from './hooks/index.binding.hook';
 import styles from './styles.module.css';
 
+// 필터 옵션 (기본형, 세로형, 가로형)
+const filterOptions: SelectOption[] = [
+  { value: 'default', label: '기본형' },
+  { value: 'vertical', label: '세로형' },
+  { value: 'horizontal', label: '가로형' },
+];
+
 export default function Pictures() {
+  const [selectedFilter, setSelectedFilter] = useState<string>('default');
+  
+  // 강아지 이미지 데이터 및 무한스크롤 훅
+  const {
+    images,
+    isInitialLoading,
+    isLoadingMore,
+    isInitialError,
+    isLoadMoreError,
+    error,
+    setLoadMoreRef,
+    refetch,
+  } = useDogImages();
+  
+  // 스플래시 스크린 훅
+  const { splashItems } = useSplashScreens(6);
+
+  const handleFilterChange = (value: string) => {
+    setSelectedFilter(value);
+  };
+
+  // 에러 재시도 핸들러
+  const handleRetry = () => {
+    refetch();
+  };
+
   return (
-    <div className={styles.container}>
-      <div className={styles.gap1}></div>
-      <div className={styles.filter}></div>
+    <div className={styles.container} data-testid="pictures-container">
+      {/* Gap */}
+      <div className={styles.gap}></div>
+      
+      {/* Filter 영역 */}
+      <div className={styles.filter}>
+        <SelectBox
+          variant="primary"
+          theme="light"
+          size="medium"
+          options={filterOptions}
+          value={selectedFilter}
+          onChange={handleFilterChange}
+          placeholder="레이아웃을 선택하세요"
+        />
+      </div>
+      
+      {/* Gap2 */}
       <div className={styles.gap2}></div>
-      <div className={styles.main}></div>
+      
+      {/* Main 영역 */}
+      <div className={styles.main}>
+        {/* 초기 로딩 중일 때 스플래시 스크린 표시 */}
+        {isInitialLoading && (
+          <div className={styles.loadingSplash} data-testid="loading-splash">
+            {splashItems.map((item) => (
+              <div
+                key={item.id}
+                className={styles.splashItem}
+                data-testid="splash-screen-item"
+                style={{ animationDelay: `${item.delay}ms` }}
+              >
+                <div className={styles.splashAnimation}></div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* 초기 로딩 에러 상태 */}
+        {isInitialError && (
+          <div className={styles.errorMessage} data-testid="error-message">
+            <div className={styles.errorTitle}>
+              강아지 사진을 불러올 수 없습니다
+            </div>
+            <div className={styles.errorDescription}>
+              {error?.message || '네트워크 연결을 확인하고 다시 시도해주세요.'}
+            </div>
+            <button
+              className={styles.retryButton}
+              onClick={handleRetry}
+              disabled={isInitialLoading}
+            >
+              다시 시도
+            </button>
+          </div>
+        )}
+
+        {/* 강아지 이미지 그리드 */}
+        {!isInitialLoading && !isInitialError && (
+          <div className={styles.photoGrid}>
+            {images.map((image, index) => (
+              <div 
+                key={image.id} 
+                className={styles.photoItem}
+                ref={index === images.length - 2 ? setLoadMoreRef : null}
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className={styles.photoImage}
+                  data-testid="dog-image"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+            
+            {/* 추가 로딩 인디케이터 */}
+            {isLoadingMore && (
+              <div className={styles.loadMoreIndicator}>
+                <div className={styles.loadMoreSpinner}></div>
+                <span style={{ marginLeft: '8px' }}>더 많은 강아지 사진을 불러오는 중...</span>
+              </div>
+            )}
+            
+            {/* 추가 로딩 에러 */}
+            {isLoadMoreError && (
+              <div className={styles.loadMoreError} data-testid="load-more-error">
+                <div>추가 사진을 불러올 수 없습니다</div>
+                <button
+                  className={styles.retryButton}
+                  onClick={handleRetry}
+                  disabled={isLoadingMore}
+                  style={{ marginTop: '8px' }}
+                >
+                  다시 시도
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
