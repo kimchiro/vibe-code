@@ -2,17 +2,19 @@
 
 import { useState } from 'react';
 import styles from './styles.module.css';
-import SelectBox from '@/commons/components/selectbox';
-import Searchbar from '@/commons/components/searchbar';
-import Button from '@/commons/components/button';
-import Pagination from '@/commons/components/pagination';
+import { SelectBox } from '@/commons/components/selectbox';
+import { Searchbar } from '@/commons/components/searchbar';
+import { Button } from '@/commons/components/button';
+import { Pagination } from '@/commons/components/pagination';
 import { Emotion, getEmotionLabel, getEmotionImage, EMOTION_COLORS } from '@/commons/constants/enum';
 import { useLinkRouting } from '@/commons/layout/hooks/index.link.routing.hook';
 import { useLinkModal } from './hooks/index.link.modal.hook';
 import { useDataBinding } from './hooks/index.binding.hook';
 
-// 일기 데이터 타입 정의 (기존 구조 유지를 위한 변환용)
-interface DiaryDisplayData {
+/**
+ * 일기 데이터 타입 정의 (기존 구조 유지를 위한 변환용)
+ */
+export interface DiaryDisplayData {
   id: number;
   date: string;
   content: string;
@@ -154,19 +156,24 @@ export default function Diaries() {
                 <img src="/icons/close_outline_light_m.svg" alt="삭제" />
               </button>
               <div className={styles.cardImage}>
-                <img src={diary.image} alt={getEmotionLabel(diary.emotion)} />
+                <img 
+                  src={diary.image} 
+                  alt={getEmotionLabel(diary.emotion)}
+                  data-testid="emotion-image"
+                />
               </div>
               <div className={styles.cardContent}>
                 <div className={styles.cardHeader}>
                   <div
                     className={styles.cardEmotion}
                     style={{ color: EMOTION_COLORS[diary.emotion] }}
+                    data-testid="emotion-text"
                   >
                     {getEmotionLabel(diary.emotion)}
                   </div>
-                  <div className={styles.cardDate}>{diary.date}</div>
+                  <div className={styles.cardDate} data-testid="date-text">{diary.date}</div>
                 </div>
-                <div className={styles.cardText}>{diary.content}</div>
+                <div className={styles.cardText} data-testid="title-text">{diary.content}</div>
               </div>
             </div>
           ))}
