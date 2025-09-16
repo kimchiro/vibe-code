@@ -39,10 +39,17 @@ export default function Diaries() {
   // TODO: isLoading, error 상태 처리 구현 예정
   // const { diaries: rawDiaries, isLoading, error } = useDataBinding();
 
+  // 날짜에서 YYYY-MM-DD 형식만 추출하는 함수
+  const extractDateOnly = (dateString: string): string => {
+    // YYYY-MM-DD 형식의 날짜만 추출하는 정규표현식
+    const dateMatch = dateString.match(/\d{4}-\d{2}-\d{2}/);
+    return dateMatch ? dateMatch[0] : dateString;
+  };
+
   // 실제 데이터를 디스플레이 형식으로 변환
   const diaries: DiaryDisplayData[] = rawDiaries.map((diary) => ({
     id: diary.id,
-    date: diary.createdAt, // createdAt을 date로 매핑
+    date: extractDateOnly(diary.createdAt), // createdAt에서 날짜만 추출
     content: diary.title, // title을 content로 매핑 (기존 구조 유지)
     emotion: diary.emotion,
     image: getEmotionImage(diary.emotion, "m"), // enum 기반 이미지 경로 생성
