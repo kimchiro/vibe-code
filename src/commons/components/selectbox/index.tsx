@@ -39,6 +39,7 @@ export interface SelectBoxProps {
   disabled?: boolean;
   fullWidth?: boolean;
   className?: string;
+  'data-testid'?: string;
   onChange?: (value: string, option: SelectOption) => void;
   onFocus?: () => void;
   onBlur?: () => void;
@@ -58,6 +59,7 @@ export const SelectBox = React.forwardRef<HTMLDivElement, SelectBoxProps>(
       disabled = false,
       fullWidth = false,
       className,
+      'data-testid': dataTestId,
       onChange,
       onFocus,
       onBlur,
@@ -210,6 +212,7 @@ export const SelectBox = React.forwardRef<HTMLDivElement, SelectBoxProps>(
           aria-haspopup="listbox"
           aria-controls="selectbox-options"
           aria-disabled={disabled}
+          data-testid={dataTestId}
         >
         <div className={styles.trigger}>
           <span className={styles.text}>{displayText}</span>

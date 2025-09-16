@@ -282,6 +282,71 @@ export const EMOTION_EXAMPLES = {
   }
 } as const;
 
+// ===== 필터 시스템 =====
+
+/**
+ * 이미지 필터 타입 enum
+ * 프로젝트에서 사용되는 모든 이미지 필터 상태를 정의
+ */
+export enum ImageFilter {
+  DEFAULT = 'default',
+  HORIZONTAL = 'horizontal',
+  VERTICAL = 'vertical'
+}
+
+/**
+ * 필터별 표시 텍스트 매핑
+ */
+export const IMAGE_FILTER_LABELS: Record<ImageFilter, string> = {
+  [ImageFilter.DEFAULT]: '기본형',
+  [ImageFilter.HORIZONTAL]: '가로형',
+  [ImageFilter.VERTICAL]: '세로형'
+} as const;
+
+/**
+ * 필터별 이미지 크기 매핑
+ */
+export const IMAGE_FILTER_SIZES: Record<ImageFilter, { width: number; height: number }> = {
+  [ImageFilter.DEFAULT]: { width: 640, height: 640 },
+  [ImageFilter.HORIZONTAL]: { width: 640, height: 480 },
+  [ImageFilter.VERTICAL]: { width: 480, height: 640 }
+} as const;
+
+/**
+ * 필터 enum 값으로 라벨 텍스트 가져오기
+ * @param filter 필터 enum 값
+ * @returns 해당 필터의 한글 라벨
+ */
+export function getImageFilterLabel(filter: ImageFilter): string {
+  return IMAGE_FILTER_LABELS[filter];
+}
+
+/**
+ * 필터 enum 값으로 크기 정보 가져오기
+ * @param filter 필터 enum 값
+ * @returns 해당 필터의 크기 정보
+ */
+export function getImageFilterSize(filter: ImageFilter): { width: number; height: number } {
+  return IMAGE_FILTER_SIZES[filter];
+}
+
+/**
+ * 모든 필터 enum 값 배열 반환
+ * @returns 모든 필터 enum 값들의 배열
+ */
+export function getAllImageFilters(): ImageFilter[] {
+  return Object.values(ImageFilter);
+}
+
+/**
+ * 필터 enum 값 유효성 검사
+ * @param value 검사할 값
+ * @returns 유효한 필터 enum 값인지 여부
+ */
+export function isValidImageFilter(value: unknown): value is ImageFilter {
+  return typeof value === 'string' && Object.values(ImageFilter).includes(value as ImageFilter);
+}
+
 // 기본 export
 const emotionSystem = {
   Emotion,

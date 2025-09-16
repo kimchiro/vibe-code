@@ -1,20 +1,20 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import SelectBox from '@/commons/components/selectbox';
 import type { SelectOption } from '@/commons/components/selectbox';
+import { ImageFilter } from '@/commons/constants/enum';
 import { useDogImages, useSplashScreens } from './hooks/index.binding.hook';
+import { useFilter, getFilterStyles } from './hooks/index.filter.hook';
 import styles from './styles.module.css';
 
-// 필터 옵션 (기본형, 세로형, 가로형)
-const filterOptions: SelectOption[] = [
-  { value: 'default', label: '기본형' },
-  { value: 'vertical', label: '세로형' },
-  { value: 'horizontal', label: '가로형' },
-];
-
 export default function Pictures() {
-  const [selectedFilter, setSelectedFilter] = useState<string>('default');
+  // 필터 훅
+  const {
+    selectedFilter,
+    filterOptions,
+    handleFilterChange,
+  } = useFilter(ImageFilter.DEFAULT);
   
   // 강아지 이미지 데이터 및 무한스크롤 훅
   const {
@@ -31,9 +31,11 @@ export default function Pictures() {
   // 스플래시 스크린 훅
   const { splashItems } = useSplashScreens(6);
 
-  const handleFilterChange = (value: string) => {
-    setSelectedFilter(value);
-  };
+  // SelectBox용 옵션 변환
+  const selectBoxOptions: SelectOption[] = filterOptions.map(option => ({
+    value: option.value,
+    label: option.label,
+  }));
 
   // 에러 재시도 핸들러
   const handleRetry = () => {
@@ -51,10 +53,11 @@ export default function Pictures() {
           variant="primary"
           theme="light"
           size="medium"
-          options={filterOptions}
+          options={selectBoxOptions}
           value={selectedFilter}
           onChange={handleFilterChange}
           placeholder="레이아웃을 선택하세요"
+          data-testid="filter-select"
         />
       </div>
       
@@ -70,8 +73,11 @@ export default function Pictures() {
               <div
                 key={item.id}
                 className={styles.splashItem}
+                style={{
+                  animationDelay: `${item.delay}ms`,
+                  ...getFilterStyles(selectedFilter)
+                }}
                 data-testid="splash-screen-item"
-                style={{ animationDelay: `${item.delay}ms` }}
               >
                 <div className={styles.splashAnimation}></div>
               </div>
@@ -105,7 +111,9 @@ export default function Pictures() {
               <div 
                 key={image.id} 
                 className={styles.photoItem}
+                style={getFilterStyles(selectedFilter)}
                 ref={index === images.length - 2 ? setLoadMoreRef : null}
+                data-testid="photo-item"
               >
                 <img
                   src={image.src}
@@ -121,7 +129,7 @@ export default function Pictures() {
             {isLoadingMore && (
               <div className={styles.loadMoreIndicator}>
                 <div className={styles.loadMoreSpinner}></div>
-                <span style={{ marginLeft: '8px' }}>더 많은 강아지 사진을 불러오는 중...</span>
+                <span className={styles.loadMoreText}>더 많은 강아지 사진을 불러오는 중...</span>
               </div>
             )}
             
@@ -130,10 +138,9 @@ export default function Pictures() {
               <div className={styles.loadMoreError} data-testid="load-more-error">
                 <div>추가 사진을 불러올 수 없습니다</div>
                 <button
-                  className={styles.retryButton}
+                  className={`${styles.retryButton} ${styles.retryButtonSpaced}`}
                   onClick={handleRetry}
                   disabled={isLoadingMore}
-                  style={{ marginTop: '8px' }}
                 >
                   다시 시도
                 </button>

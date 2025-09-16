@@ -1,4 +1,4 @@
-/* Pictures 컴포넌트 스타일 */
+/* ===== Pictures 컴포넌트 기본 스타일 ===== */
 .container {
   display: flex;
   flex-direction: column;
@@ -6,7 +6,7 @@
   margin: 0 auto;
 }
 
-/* Gap 영역들 */
+/* ===== Gap 영역 스타일 ===== */
 .gap {
   width: 1168px;
   height: 32px;
@@ -17,7 +17,7 @@
   height: 42px;
 }
 
-/* Filter 영역 */
+/* ===== Filter 영역 스타일 ===== */
 .filter {
   width: 1168px;
   height: 48px;
@@ -25,22 +25,19 @@
   align-items: center;
   justify-content: flex-start;
   background-color: var(--color-surface-primary);
-
   border-radius: 8px;
 }
 
-
-/* Main 영역 */
+/* ===== Main 영역 스타일 ===== */
 .main {
   width: 1168px;
   min-height: 600px;
   padding: 24px;
   background-color: var(--color-surface-primary);
-  border: 1px solid var(--color-border-primary);
   border-radius: 8px;
 }
 
-/* 사진 그리드 - 컬럼 형태로 하나씩 표시 */
+/* ===== 사진 그리드 스타일 ===== */
 .photoGrid {
   display: flex;
   flex-direction: column;
@@ -49,7 +46,7 @@
   align-items: center;
 }
 
-/* 사진 아이템 - 컬럼 형태로 하나씩 */
+/* ===== 사진 아이템 스타일 ===== */
 .photoItem {
   position: relative;
   width: 400px;
@@ -58,7 +55,7 @@
   overflow: hidden;
   background-color: var(--color-surface-secondary);
   border: 1px solid var(--color-border-primary);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, width 0.3s ease, height 0.3s ease;
 }
 
 .photoItem:hover {
@@ -66,7 +63,7 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
-/* 사진 이미지 */
+/* ===== 사진 이미지 스타일 ===== */
 .photoImage {
   width: 100%;
   height: 100%;
@@ -78,7 +75,7 @@
   transform: scale(1.05);
 }
 
-/* 반응형 디자인 */
+/* ===== 반응형 디자인 ===== */
 @media (max-width: 1200px) {
   .container,
   .gap,
@@ -141,7 +138,7 @@
   }
 }
 
-/* 스플래시 스크린 스타일 */
+/* ===== 스플래시 스크린 스타일 ===== */
 .loadingSplash {
   display: flex;
   flex-direction: column;
@@ -158,6 +155,7 @@
   overflow: hidden;
   background-color: #808080; /* 회색 배경 */
   border: 1px solid var(--color-border-primary);
+  transition: width 0.3s ease, height 0.3s ease;
 }
 
 .splashAnimation {
@@ -186,7 +184,7 @@
   }
 }
 
-/* 에러 메시지 스타일 */
+/* ===== 에러 메시지 스타일 ===== */
 .errorMessage {
   display: flex;
   flex-direction: column;
@@ -234,7 +232,11 @@
   cursor: not-allowed;
 }
 
-/* 무한스크롤 로딩 인디케이터 */
+.retryButtonSpaced {
+  margin-top: 8px;
+}
+
+/* ===== 무한스크롤 로딩 인디케이터 스타일 ===== */
 .loadMoreIndicator {
   display: flex;
   justify-content: center;
@@ -250,6 +252,10 @@
   border-top: 2px solid var(--color-primary, #3b82f6);
   border-radius: 50%;
   animation: spin 1s linear infinite;
+}
+
+.loadMoreText {
+  margin-left: 8px;
 }
 
 @keyframes spin {
@@ -270,7 +276,7 @@
   text-align: center;
 }
 
-/* 반응형 - 스플래시 스크린 */
+/* ===== 반응형 - 스플래시 스크린 ===== */
 @media (max-width: 768px) {
   .splashItem {
     width: 300px;
