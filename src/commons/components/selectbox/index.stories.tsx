@@ -121,7 +121,7 @@ const InteractiveSelectBox = (args: SelectBoxProps) => {
           color: '#666',
           textAlign: 'center'
         }}>
-          선택된 값: "{value}"
+          선택된 값: &quot;{value}&quot;
         </div>
       )}
     </div>

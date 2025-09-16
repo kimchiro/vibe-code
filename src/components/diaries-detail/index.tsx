@@ -5,7 +5,7 @@ import Image from 'next/image';
 import styles from './styles.module.css';
 import { Button } from '@/commons/components/button';
 import { Input } from '@/commons/components/input';
-import { Emotion, getEmotionLabel, getEmotionImage, getEmotionColor } from '@/commons/constants/enum';
+import { getEmotionLabel, getEmotionColor } from '@/commons/constants/enum';
 import { useDiaryBinding } from './hooks/index.binding.hook';
 
 // 회고 데이터 인터페이스

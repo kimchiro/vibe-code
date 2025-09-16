@@ -79,7 +79,7 @@ test.describe('Layout Area Hook', () => {
     await expect(footer).toBeHidden();
   });
 
-  test.skip('사진보관함 페이지 테스트는 건너뜀', async ({ page }) => {
+  test.skip('사진보관함 페이지 테스트는 건너뜀', async () => {
     // 요구사항에 따라 /pictures 경로는 테스트 skip
   });
 

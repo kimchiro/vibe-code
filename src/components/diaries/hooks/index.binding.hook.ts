@@ -59,24 +59,25 @@ export function useDataBinding(): UseDataBindingReturn {
 
       // 데이터 유효성 검사 및 타입 변환
       const validDiaries: DiaryData[] = parsedData
-        .filter((item: any) => {
+        .filter((item: unknown): item is Record<string, unknown> => {
           // 필수 필드 존재 여부 확인
           return (
-            item &&
-            typeof item.id === 'number' &&
-            typeof item.title === 'string' &&
-            typeof item.content === 'string' &&
-            typeof item.emotion === 'string' &&
-            typeof item.createdAt === 'string' &&
-            Object.values(Emotion).includes(item.emotion as Emotion)
+            item !== null &&
+            typeof item === 'object' &&
+            typeof (item as Record<string, unknown>).id === 'number' &&
+            typeof (item as Record<string, unknown>).title === 'string' &&
+            typeof (item as Record<string, unknown>).content === 'string' &&
+            typeof (item as Record<string, unknown>).emotion === 'string' &&
+            typeof (item as Record<string, unknown>).createdAt === 'string' &&
+            Object.values(Emotion).includes((item as Record<string, unknown>).emotion as Emotion)
           );
         })
-        .map((item: any) => ({
-          id: item.id,
-          title: item.title,
-          content: item.content,
+        .map((item: Record<string, unknown>) => ({
+          id: item.id as number,
+          title: item.title as string,
+          content: item.content as string,
           emotion: item.emotion as Emotion,
-          createdAt: item.createdAt
+          createdAt: item.createdAt as string
         }));
 
       setDiaries(validDiaries);

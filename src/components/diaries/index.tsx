@@ -35,7 +35,9 @@ export default function Diaries() {
   const { handleWriteModalOpen } = useLinkModal();
 
   // 데이터 바인딩 훅 사용
-  const { diaries: rawDiaries, isLoading, error } = useDataBinding();
+  const { diaries: rawDiaries } = useDataBinding();
+  // TODO: isLoading, error 상태 처리 구현 예정
+  // const { diaries: rawDiaries, isLoading, error } = useDataBinding();
 
   // 실제 데이터를 디스플레이 형식으로 변환
   const diaries: DiaryDisplayData[] = rawDiaries.map((diary) => ({

@@ -62,10 +62,10 @@ export const useDiaryBinding = (): UseDiaryBindingReturn => {
         }
 
         // JSON 파싱
-        let diaries: any[];
+        let diaries: unknown[];
         try {
           diaries = JSON.parse(diariesData);
-        } catch (parseError) {
+        } catch {
           setError('일기 데이터를 읽을 수 없습니다.');
           setDiary(null);
           setIsLoading(false);
@@ -81,7 +81,9 @@ export const useDiaryBinding = (): UseDiaryBindingReturn => {
         }
 
         // ID와 일치하는 일기 찾기
-        const targetDiary = diaries.find(diary => diary.id === numericId);
+        const targetDiary = diaries.find((diary: unknown) => {
+          return diary && typeof diary === 'object' && (diary as Record<string, unknown>).id === numericId;
+        }) as Record<string, unknown> | undefined;
         if (!targetDiary) {
           setError(`ID ${numericId}에 해당하는 일기를 찾을 수 없습니다.`);
           setDiary(null);
@@ -91,11 +93,11 @@ export const useDiaryBinding = (): UseDiaryBindingReturn => {
 
         // 데이터 유효성 검증 및 변환
         const validatedDiary: DiaryData = {
-          id: targetDiary.id,
-          title: targetDiary.title || '',
-          content: targetDiary.content || '',
-          emotion: isValidEmotion(targetDiary.emotion) ? targetDiary.emotion : Emotion.ETC,
-          createdAt: targetDiary.createdAt || ''
+          id: targetDiary.id as number,
+          title: (targetDiary.title as string) || '',
+          content: (targetDiary.content as string) || '',
+          emotion: isValidEmotion(targetDiary.emotion as string) ? (targetDiary.emotion as Emotion) : Emotion.ETC,
+          createdAt: (targetDiary.createdAt as string) || ''
         };
 
         setDiary(validatedDiary);

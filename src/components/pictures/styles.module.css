@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 1168px;
+  margin: 0 auto;
+
+}
+
+.gap1 {
+  width: 1168px;
+  height: 32px;
+}
+
+.filter {
+  width: 1168px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background-color: var(--color-surface-primary);
+  border-radius: 8px;
+}
+
+.gap2 {
+  width: 1168px;
+  height: 42px;
+}
+
+.main {
+  width: 1168px;
+  min-height: 936px;
+}

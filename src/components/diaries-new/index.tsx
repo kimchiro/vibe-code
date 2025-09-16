@@ -13,12 +13,13 @@ const DiariesNew: React.FC = () => {
   const { form, onSubmit, isFormComplete } = useDiaryForm();
   const { handleClose } = useDiaryModalClose();
 
-  const { register, watch, setValue, formState: { errors } } = form;
+  const { register, watch, setValue } = form;
   
   // 현재 폼 값들 감시
   const watchedEmotion = watch('emotion');
-  const watchedTitle = watch('title');
-  const watchedContent = watch('content');
+  // TODO: 폼 값 사용 예정
+  // const watchedTitle = watch('title');
+  // const watchedContent = watch('content');
 
   const handleEmotionChange = (emotion: Emotion) => {
     setValue('emotion', emotion);

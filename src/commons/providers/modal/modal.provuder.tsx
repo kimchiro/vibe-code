@@ -4,7 +4,8 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import { createPortal } from 'react-dom';
 import styles from './styles.module.css';
 
-// 클래스명 조합 헬퍼 함수
+// 클래스명 조합 헬퍼 함수 (향후 사용 예정)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const cn = (...classes: (string | Record<string, boolean> | undefined | null | false)[]): string => {
   return classes
     .filter(Boolean)

@@ -97,7 +97,7 @@ const InteractiveSearchbar = (args: SearchbarProps) => {
           color: '#666',
           textAlign: 'center'
         }}>
-          입력된 값: "{value}"
+          입력된 값: &quot;{value}&quot;
         </div>
       )}
     </div>
@@ -588,7 +588,7 @@ export const RealWorldExample: Story = {
               color: '#666',
               fontSize: '14px'
             }}>
-              "{searchValue}"에 대한 검색 결과가 없습니다.
+              &quot;{searchValue}&quot;에 대한 검색 결과가 없습니다.
             </div>
           )}
         </div>
