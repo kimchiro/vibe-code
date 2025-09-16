@@ -7,7 +7,7 @@ import { Searchbar } from '@/commons/components/searchbar';
 import { Button } from '@/commons/components/button';
 import { Pagination } from '@/commons/components/pagination';
 import { Emotion, getEmotionLabel, getEmotionImage, EMOTION_COLORS } from '@/commons/constants/enum';
-import { useLinkRouting } from '@/commons/layout/hooks/index.link.routing.hook';
+import { useLinkRouting } from './hooks/index.link.routing.hook';
 import { useLinkModal } from './hooks/index.link.modal.hook';
 import { useDataBinding } from './hooks/index.binding.hook';
 

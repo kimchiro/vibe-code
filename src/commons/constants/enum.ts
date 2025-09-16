@@ -82,7 +82,7 @@ export const EMOTION_COLORS: Record<Emotion, string> = {
   [Emotion.SAD]: baseColors.primary[600],    // blue60 - #0284c7
   [Emotion.ANGRY]: baseColors.neutral[600],  // gray60 - #525252
   [Emotion.SURPRISE]: baseColors.warning[600], // yellow60 - #d97706
-  [Emotion.ETC]: baseColors.success[600]     // green60 - #A229ED
+  [Emotion.ETC]: baseColors.accent[600]     // purple60 - #A229ED
 } as const;
 
 /**
