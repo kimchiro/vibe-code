@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { useTheme } from 'next-themes';
-import { Toggle } from '../components/toggle';
+// import { useTheme } from 'next-themes';
+// import { Toggle } from '../components/toggle';
 import { Button } from '../components/button';
 import styles from './styles.module.css';
 import { useLinkRouting } from './hooks/index.link.routing.hook';
@@ -24,12 +24,12 @@ export default function Layout({ children }: LayoutProps) {
   } = useLinkRouting();
 
   const areaVisibility = useArea();
-  const { theme, setTheme } = useTheme();
+  // const { theme, setTheme } = useTheme();
   const { isLoggedIn, userDisplayName, handleLoginClick, handleLogoutClick } = useLayoutAuth();
 
-  const handleThemeToggle = (checked: boolean) => {
-    setTheme(checked ? 'dark' : 'light');
-  };
+  // const handleThemeToggle = (checked: boolean) => {
+  //   setTheme(checked ? 'dark' : 'light');
+  // };
 
   return (
     <div className={styles.container}>
@@ -76,7 +76,7 @@ export default function Layout({ children }: LayoutProps) {
                 </Button>
               )}
               
-              {areaVisibility.header.darkModeToggle && (
+              {/* {areaVisibility.header.darkModeToggle && (
                 <Toggle
                   size="small"
                   variant="primary"
@@ -84,7 +84,7 @@ export default function Layout({ children }: LayoutProps) {
                   onChange={handleThemeToggle}
                   data-testid="theme-toggle"
                 />
-              )}
+              )} */}
             </div>
           </header>
           
