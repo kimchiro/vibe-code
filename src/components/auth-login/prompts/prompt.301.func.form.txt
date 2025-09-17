@@ -13,7 +13,7 @@
 조건-파일경로) 참고할 TSX  파일경로: src/components/auth-login/index.tsx
 조건-파일경로) 참고할 CSS  파일경로: src/components/auth-login/styles.module.css
 조건-파일경로) 구현될 HOOK 파일경로: src/components/auth-login/hooks/index.form.hook.tsx
-조건-파일경로) 구현될 TEST 파일경로: src/components/auth-login/tests/index.form.hook.spec.ts
+조건-파일경로) 구현될 TEST 파일경로: tests/auth-login-form.hook.spec.ts
 
 ==============================================
 

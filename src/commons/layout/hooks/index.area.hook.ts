@@ -33,6 +33,20 @@ export function useArea(): AreaVisibility {
   const pathname = usePathname();
 
   const areaVisibility = useMemo(() => {
+    // pathname이 null인 경우 기본값 처리
+    if (!pathname) {
+      return {
+        header: {
+          visible: true,
+          logo: true,
+          darkModeToggle: true
+        },
+        banner: true,
+        navigation: true,
+        footer: true
+      };
+    }
+
     // 현재 경로에 해당하는 UrlPath 찾기
     const currentUrlPath = findMatchingUrlPath(pathname);
     
@@ -128,6 +142,10 @@ export function useCurrentPageConfig() {
   const pathname = usePathname();
   
   const pageConfig = useMemo(() => {
+    if (!pathname) {
+      return null;
+    }
+    
     const currentUrlPath = findMatchingUrlPath(pathname);
     
     if (!currentUrlPath) {
@@ -147,7 +165,7 @@ export function useAreaDebug() {
   const pathname = usePathname();
   const areaVisibility = useArea();
   const pageConfig = useCurrentPageConfig();
-  const matchingUrlPath = findMatchingUrlPath(pathname);
+  const matchingUrlPath = pathname ? findMatchingUrlPath(pathname) : null;
   
   return {
     pathname,

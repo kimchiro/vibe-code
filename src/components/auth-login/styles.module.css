@@ -130,6 +130,17 @@
   color: #274AE1;
 }
 
+/* Error Message */
+.errorMessage {
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: #EF4444;
+  margin-top: 4px;
+  display: block;
+}
+
 /* Responsive Design */
 @media (min-width: 640px) {
   .formWrapper {
@@ -157,5 +168,10 @@
   
   .footer {
     margin-top: 40px;
+  }
+  
+  .errorMessage {
+    font-size: 14px;
+    line-height: 18px;
   }
 }

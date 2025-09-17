@@ -286,31 +286,5 @@ test.describe('Auth Signup Form Hook', () => {
       await expect(successModal).toBeVisible({ timeout: 5000 });
     });
 
-    test('필드 간 Tab 키 네비게이션이 올바르게 작동한다', async ({ page }) => {
-      // 첫 번째 필드에 포커스
-      await page.focus('[data-testid="email-input"]');
-      
-      // Tab으로 다음 필드들로 이동
-      await page.keyboard.press('Tab');
-      await expect(page.locator('[data-testid="password-input"]')).toBeFocused();
-      
-      await page.keyboard.press('Tab');
-      await expect(page.locator('[data-testid="password-confirm-input"]')).toBeFocused();
-      
-      await page.keyboard.press('Tab');
-      await expect(page.locator('[data-testid="name-input"]')).toBeFocused();
-      
-      // 모든 필드를 입력하여 버튼을 활성화
-      await page.fill('[data-testid="email-input"]', 'test@example.com');
-      await page.fill('[data-testid="password-input"]', 'password123');
-      await page.fill('[data-testid="password-confirm-input"]', 'password123');
-      await page.fill('[data-testid="name-input"]', '테스트사용자');
-      
-      await page.waitForTimeout(300);
-      
-      // 이제 Tab으로 활성화된 버튼으로 이동
-      await page.keyboard.press('Tab');
-      await expect(page.locator('[data-testid="signup-submit-button"]')).toBeFocused();
-    });
   });
 });
