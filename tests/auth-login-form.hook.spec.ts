@@ -85,8 +85,9 @@ test.describe('Auth Login Form Hook', () => {
       expect(userInfo).toBeTruthy();
       
       const parsedUser = JSON.parse(userInfo!);
-      expect(parsedUser).toHaveProperty('_id');
+      expect(parsedUser).toHaveProperty('id');
       expect(parsedUser).toHaveProperty('name');
+      expect(parsedUser).toHaveProperty('email');
       
       // 모달의 확인 버튼 클릭
       await page.click('[data-testid="modal-confirm-button"]');

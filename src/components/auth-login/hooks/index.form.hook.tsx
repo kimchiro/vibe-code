@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useModal } from '@/commons/providers/modal/modal.provuder';
 import { Modal } from '@/commons/components/modal';
 import { UrlPath } from '@/commons/constants/url';
+import { useAuth } from '@/commons/providers/auth/auth.provider';
 
 // 로그인 폼 스키마 정의
 const loginSchema = z.object({
@@ -94,6 +95,7 @@ const fetchUserLoggedIn = async (accessToken: string): Promise<FetchUserLoggedIn
 export const useAuthLoginForm = () => {
   const router = useRouter();
   const { openModal, closeAllModals } = useModal();
+  const { login } = useAuth();
 
   // React Hook Form 설정
   const {
@@ -122,7 +124,7 @@ export const useAuthLoginForm = () => {
   // 로그인 뮤테이션
   const loginMutation = useMutation({
     mutationFn: loginUser,
-    onSuccess: async (data) => {
+    onSuccess: async (data, variables) => {
       try {
         const accessToken = data.loginUser.accessToken;
         
@@ -130,12 +132,12 @@ export const useAuthLoginForm = () => {
         const userResponse = await fetchUserLoggedIn(accessToken);
         const userInfo = userResponse.fetchUserLoggedIn;
         
-        // 로컬스토리지에 저장
-        localStorage.setItem('accessToken', accessToken);
-        localStorage.setItem('user', JSON.stringify({
-          _id: userInfo._id,
+        // Auth Provider를 통해 로그인 처리
+        login(accessToken, {
+          id: userInfo._id,
+          email: variables.email, // 로그인 시 입력한 이메일 사용
           name: userInfo.name,
-        }));
+        });
         
         // 로그인 성공 모달 표시
         openModal({

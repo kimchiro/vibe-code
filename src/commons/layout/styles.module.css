@@ -10,19 +10,19 @@
 .header {
   width: 1168px;
   height: 60px;
-  background-color: var(--color-surface-primary);
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .headerTitle {
-  font-family: var(--font-family-korean-primary);
-  font-size: var(--typography-heading1-korean-desktop-font-size);
-  line-height: var(--typography-heading1-korean-desktop-line-height);
-  font-weight: var(--typography-heading1-korean-desktop-font-weight);
-  letter-spacing: var(--typography-heading1-korean-desktop-letter-spacing);
-  color: var(--color-text-primary);
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: #171717;
   margin: 0;
 }
 
@@ -56,14 +56,34 @@
 .headerActions {
   display: flex;
   align-items: center;
+  gap: 16px;
+}
+
+/* ===== 인증 상태 UI ===== */
+.authStatus {
+  display: flex;
+  align-items: center;
   gap: 12px;
+}
+
+.userName {
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  color: #171717;
+}
+
+.logoutButton {
+  width: auto;
 }
 
 /* Navigation */
 .navigation {
   width: 1168px;
   height: 48px;
-  background-color: var(--color-surface-primary);
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -76,25 +96,25 @@
 }
 
 .navText {
-  font-family: var(--font-family-korean-primary);
-  font-size: var(--typography-heading1-korean-desktop-font-size);
-  line-height: var(--typography-heading1-korean-desktop-line-height);
-  font-weight: var(--typography-heading1-korean-desktop-font-weight);
-  letter-spacing: var(--typography-heading1-korean-desktop-letter-spacing);
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
   cursor: pointer;
   transition: all 0.2s ease;
-  color: var(--color-neutral-600); /* gray60 - 기본 상태 */
+  color: #525252; /* gray60 - 기본 상태 */
   padding-bottom: 4px;
 }
 
 .navText:hover {
-  color: var(--color-text-primary);
+  color: #171717;
 }
 
-/* 액티브 상태 스타일 */
+/* ===== 액티브 상태 스타일 ===== */
 .navTextActive {
-  color: var(--color-text-primary) !important; /* black */
-  border-bottom: 2px solid var(--color-text-primary);
+  color: #171717; /* black */
+  border-bottom: 2px solid #171717;
 }
 
 /* Main Content */
@@ -102,14 +122,14 @@
   width: 1168px;
   flex: 1;
   min-height: auto;
-  background-color: var(--color-surface-primary);
+  background-color: #ffffff;
 }
 
-/* Footer */
+/* ===== Footer ===== */
 .footer {
   width: 1168px;
   height: 160px;
-  background-color: var(--color-surface-secondary);
+  background-color: #fafafa;
   display: flex;
   align-items: center;
   justify-content: center;

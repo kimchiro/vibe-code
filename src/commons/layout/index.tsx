@@ -4,9 +4,11 @@ import React from 'react';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { Toggle } from '../components/toggle';
+import { Button } from '../components/button';
 import styles from './styles.module.css';
 import { useLinkRouting } from './hooks/index.link.routing.hook';
 import { useArea } from './hooks/index.area.hook';
+import { useLayoutAuth } from './hooks/index.auth.hook';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -23,6 +25,7 @@ export default function Layout({ children }: LayoutProps) {
 
   const areaVisibility = useArea();
   const { theme, setTheme } = useTheme();
+  const { isLoggedIn, userDisplayName, handleLoginClick, handleLogoutClick } = useLayoutAuth();
 
   const handleThemeToggle = (checked: boolean) => {
     setTheme(checked ? 'dark' : 'light');
@@ -43,8 +46,37 @@ export default function Layout({ children }: LayoutProps) {
               </h1>
             )}
             
-            {areaVisibility.header.darkModeToggle && (
-              <div className={styles.headerActions}>
+            <div className={styles.headerActions}>
+              {/* 인증 상태 UI - 로그인 여부에 따라 분기 */}
+              {isLoggedIn ? (
+                <div className={styles.authStatus}>
+                  <span className={styles.userName} data-testid="user-name">
+                    {userDisplayName}
+                  </span>
+                  <Button
+                    variant="secondary"
+                    size="small"
+                    theme="light"
+                    className={styles.logoutButton}
+                    onClick={handleLogoutClick}
+                    data-testid="logout-button"
+                  >
+                    로그아웃
+                  </Button>
+                </div>
+              ) : (
+                <Button
+                  variant="primary"
+                  size="small"
+                  theme="light"
+                  onClick={handleLoginClick}
+                  data-testid="login-button"
+                >
+                  로그인
+                </Button>
+              )}
+              
+              {areaVisibility.header.darkModeToggle && (
                 <Toggle
                   size="small"
                   variant="primary"
@@ -52,8 +84,8 @@ export default function Layout({ children }: LayoutProps) {
                   onChange={handleThemeToggle}
                   data-testid="theme-toggle"
                 />
-              </div>
-            )}
+              )}
+            </div>
           </header>
           
           <div className={styles.gap}></div>
